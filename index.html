@@ -1,0 +1,854 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Breaking Bud</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Big+Shoulders+Display:wght@600;800;900&family=Archivo:wght@400;500;600&family=Patrick+Hand&family=Cormorant+Garamond:wght@600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a garage at polar night. One portrait "film window" scrubs the brew day while huge industrial type frames it; below, numbered reels (Il Capo-style) for beers and process. */
+:root{
+  --ink:#0c0e0d;      /* garage floor at 23:00 */
+  --coal:#151917;     /* panels */
+  --line:#2a302d;     /* hairlines */
+  --bone:#ece6da;     /* label paper */
+  --steel:#959d98;    /* stainless, secondary text */
+  --red:#d6402f;      /* the red rule on the label */
+  --chem:#2f6d4a;     /* periodic-table green */
+  --aurora:#62e0a3;   /* nordlys, used sparingly */
+  --kb:#f6c90e;       /* Kill Bill yellow, hero type only */
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"Cormorant Garamond",Georgia,serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --gutr:max(16px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{background:var(--ink);color:var(--bone);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--aurora);outline-offset:3px}
+.wrap{padding-left:var(--gut);padding-right:var(--gutr);max-width:1380px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.88;letter-spacing:.005em;margin:0;text-wrap:balance}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
+.serif{font-family:var(--f-serif);text-transform:uppercase;letter-spacing:.32em;font-weight:600}
+p{margin:0;max-width:62ch}
+
+/* ---------- header ---------- */
+header.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--gutr) 14px var(--gut);background:linear-gradient(var(--ink),rgba(12,14,13,0));}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:26px;height:34px;flex:none}
+.brand b{font-family:var(--f-display);font-weight:900;font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+nav.links{display:flex;gap:22px;align-items:center}
+nav.links a{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--steel)}
+.roll{display:inline-block;overflow:hidden;height:1.3em;line-height:1.3em;vertical-align:bottom}
+.roll span{display:block;transition:transform .35s cubic-bezier(.6,0,.2,1)}
+.roll span::after{content:attr(data-t);display:block;color:var(--bone)}
+a:hover .roll span,a:focus-visible .roll span{transform:translateY(-1.3em)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
+.lang button{font:600 12px/1 var(--f-mono);letter-spacing:.1em;background:none;color:var(--steel);border:0;padding:8px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--ink)}
+.menu-btn{display:none}
+@media (max-width:900px){nav.links{display:none}}
+
+/* ---------- film ---------- */
+#film{position:relative;height:170vh;height:170svh}
+.introv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transform-origin:center 40%}
+.vshade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(12,14,13,.6) 0%,rgba(12,14,13,.1) 35%,rgba(12,14,13,.25) 65%,rgba(12,14,13,.92) 100%);pointer-events:none}
+.snd{position:absolute;left:var(--gut);bottom:28px;z-index:4;font:600 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--bone);background:rgba(12,14,13,.6);border:1px solid var(--line);border-radius:999px;padding:11px 16px;cursor:pointer;backdrop-filter:blur(6px)}
+.snd:hover,.snd[aria-pressed="true"]{background:var(--bone);color:var(--ink)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
+.glow{position:absolute;inset:-20% -10% auto;height:70%;background:radial-gradient(60% 60% at 30% 40%,rgba(98,224,163,.18),transparent 70%),radial-gradient(50% 50% at 75% 30%,rgba(120,90,255,.10),transparent 70%);filter:blur(10px);pointer-events:none}
+.giant{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutr) 0 var(--gut);pointer-events:none}
+.giant span{position:relative;font-family:"Bowlby One SC","Arial Black",Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(48px,11vw,200px);line-height:.9;letter-spacing:-.01em;color:transparent;will-change:transform}
+/* Kill Bill: yellow block letters, sliced by a katana */
+.giant span::before,.giant span::after{content:attr(data-t);position:absolute;inset:0;color:var(--kb);text-shadow:0 6px 30px rgba(0,0,0,.55)}
+.giant span::before{clip-path:polygon(0 0,100% 0,100% 40%,0 64%)}
+.giant span::after{clip-path:polygon(0 64.5%,100% 40.5%,100% 100%,0 100%);transform:translate(.05em,.035em)}
+.giant .l{transform-origin:left center}
+.window{position:relative;height:min(78vh,1000px);height:min(78svh,1000px);aspect-ratio:9/16;max-width:100%;border-radius:4px;overflow:hidden;background:var(--coal);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px var(--line);z-index:2}
+.window canvas,.window img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.window .shade{position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.65));pointer-events:none}
+.chap{position:absolute;left:14px;right:14px;bottom:14px;z-index:3}
+.chap .n{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--aurora)}
+.chap h3{font-size:clamp(30px,4vw,44px);margin-top:4px}
+.chap .d{font-family:var(--f-mono);font-size:12px;color:var(--bone);opacity:.85;margin-top:6px}
+.side{position:absolute;bottom:28px;z-index:3;font-family:var(--f-mono);font-size:12px;color:var(--steel);letter-spacing:.08em}
+.side.l{left:var(--gut)}
+.side.r{right:var(--gutr);text-align:right}
+.ticks{display:flex;gap:4px;margin-top:8px}
+.ticks i{display:block;width:14px;height:3px;background:var(--line);transition:background .3s}
+.ticks i.on{background:var(--red)}
+.intro{position:absolute;top:calc(84px + env(safe-area-inset-top,0px));left:var(--gut);z-index:3;max-width:300px}
+.intro p{font-size:15px;color:var(--bone)}
+.intro .eyebrow{display:block;margin-bottom:8px}
+.cue{position:absolute;top:calc(84px + env(safe-area-inset-top,0px));right:var(--gutr);z-index:3;font-family:var(--f-mono);font-size:12px;color:var(--steel);letter-spacing:.1em;text-transform:uppercase}
+@media (max-width:700px){
+  .giant{align-items:flex-start;flex-direction:column;justify-content:center;gap:34vh}
+  .snd{bottom:auto;top:calc(84px + env(safe-area-inset-top,0px))}
+  .giant span{font-size:15.5vw}
+  .window{height:auto;width:min(74vw,420px)}
+  .intro{max-width:none;right:var(--gutr);top:auto;bottom:28px}
+  .intro p{display:none}
+  .side,.cue{display:none}
+}
+
+/* ---------- sections ---------- */
+section.block{padding-block:clamp(80px,12vw,160px)}
+.sec-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:48px}
+.sec-head h2{font-size:clamp(56px,10vw,150px)}
+.sec-head .eyebrow{text-align:right}
+
+.garage{position:relative;margin-top:-1px}
+.garage img{display:block;width:100%;height:auto;max-height:92vh;object-fit:cover}
+.garage-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:12px}
+/* Gjengen */
+.gang{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);align-items:start}
+.gang .story{display:grid;gap:22px;font-size:18px}
+.gang .story p:first-child{font-size:clamp(22px,2.4vw,30px);line-height:1.3;color:var(--bone)}
+.gang .story p{color:#cfc9bd}
+.table{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:34px}
+.el{background:var(--chem);border:1px solid #3f8a60;aspect-ratio:1;padding:8px;display:flex;flex-direction:column;justify-content:space-between;color:#eaf5ee;min-width:0}
+.el .z{font-family:var(--f-mono);font-size:11px}
+.el .s{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1}
+.el .nm{font-family:var(--f-mono);font-size:10px;line-height:1.25;opacity:.85;overflow-wrap:anywhere}
+.name-origin{margin-top:34px;border-top:1px solid var(--line);padding-top:22px;display:grid;gap:12px}
+.lockup{display:flex;align-items:flex-start;gap:6px;font-family:var(--f-display);font-weight:800;font-size:clamp(34px,5vw,56px);text-transform:uppercase;line-height:1;flex-wrap:wrap}
+.lockup .box{background:var(--chem);border:1px solid #3f8a60;padding:2px 6px 4px;position:relative}
+.lockup .box sup{position:absolute;top:3px;right:4px;font-family:var(--f-mono);font-size:10px;font-weight:400}
+.lockup .box{padding-right:18px}
+.gang figure{margin:0;position:relative}
+.gang figure img{width:100%;height:auto;border-radius:3px;display:block}
+.gang figcaption{font-family:var(--f-mono);font-size:12px;color:var(--steel);margin-top:10px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.facts div{background:var(--ink);padding:14px}
+.facts b{display:block;font-family:var(--f-display);font-weight:800;font-size:30px;line-height:1}
+.facts span{font-family:var(--f-mono);font-size:11px;color:var(--steel);letter-spacing:.06em}
+@media (max-width:860px){.gang{grid-template-columns:1fr}}
+.crew{list-style:none;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:clamp(48px,7vw,90px) 0 0}
+.pt{position:relative;aspect-ratio:3/4;border-radius:3px;overflow:hidden;background:var(--chem);cursor:pointer;outline-offset:3px}
+.pt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform .6s}
+.el-face{position:absolute;inset:0;background:var(--chem);border:1px solid #3f8a60;color:#eaf5ee;padding:clamp(10px,1.4vw,18px);display:flex;flex-direction:column;justify-content:space-between;transition:clip-path .55s cubic-bezier(.7,0,.2,1);clip-path:inset(0 0 0 0)}
+.el-face .z{font-family:var(--f-mono);font-size:13px}
+.el-face .s{font-family:var(--f-display);font-weight:800;font-size:clamp(56px,8vw,120px);line-height:.85}
+.el-face .nm{font-family:var(--f-mono);font-size:12px;line-height:1.3}
+.pt:hover .el-face,.pt:focus .el-face,.pt.open .el-face{clip-path:inset(0 0 100% 0)}
+.pt:hover img,.pt:focus img,.pt.open img{transform:scale(1)}
+.pt::after{content:attr(data-n);position:absolute;left:8px;bottom:8px;font-family:var(--f-mono);font-size:11px;background:rgba(12,14,13,.8);padding:4px 7px;border-radius:2px;opacity:0;transition:opacity .3s .3s}
+.pt:hover::after,.pt:focus::after,.pt.open::after{opacity:1}
+@media (max-width:700px){.crew{grid-template-columns:repeat(6,minmax(0,1fr))}.pt{grid-column:span 2}.pt:nth-child(4){grid-column:2/span 2}.el-face .s{font-size:44px}.el-face .nm{font-size:10px}}
+@media (prefers-reduced-motion:reduce){.el-face{transition:none}}
+.sub-h{font-size:clamp(32px,4.4vw,60px);margin:clamp(56px,8vw,100px) 0 22px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.hist-grid{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.backlabel{margin:0}.backlabel img{width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.backlabel figcaption{font-family:var(--f-mono);font-size:12px;color:var(--steel);margin-top:10px}
+.motto{margin:0 0 40px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(24px,2.8vw,38px);line-height:1.3;color:var(--bone)}
+.milestones{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 22px}
+.milestones li{border-top:2px solid var(--red);padding-top:14px;display:grid;gap:8px;color:#cfc9bd;font-size:16px}
+.milestones b{font-family:var(--f-mono);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.gallery figure{margin:0}
+.gallery .w2{grid-column:span 2}
+.gallery img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:3px;display:block}
+.gallery .w2 img{aspect-ratio:8/5}
+.gallery figcaption{font-family:var(--f-mono);font-size:12px;color:var(--steel);margin-top:8px}
+@media (max-width:760px){.hist-grid{grid-template-columns:1fr}.backlabel{width:min(100%,280px);justify-self:center}.milestones{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.gallery .w2{grid-column:span 2}}
+.crew-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;font-family:var(--f-mono);font-size:12px;color:var(--steel)}
+
+/* Ølet: numbered reels */
+.reels{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.reel{display:grid;grid-template-columns:70px minmax(0,1.4fr) minmax(0,1fr) 120px;gap:20px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);position:relative}
+.reel .num{font-family:var(--f-mono);font-size:13px;color:var(--steel)}
+.reel h3{font-size:clamp(40px,6vw,92px);transition:color .3s}
+.reel .desc{color:#cfc9bd;font-size:15px}
+.reel .desc b{display:block;font-family:var(--f-mono);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.reel .thumb{width:120px;aspect-ratio:3/4;border-radius:3px;overflow:hidden;background:var(--coal);justify-self:end}
+.reel .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.reel:hover h3{color:var(--aurora)}
+.reel:hover .thumb img{transform:scale(1.08)}
+.thumb.label{display:grid;place-items:center;text-align:center;padding:10px;background:#0f1110;border:1px solid var(--line)}
+.thumb.label svg{width:28px;height:36px}
+.thumb.label .t{font-family:var(--f-display);font-weight:800;font-size:15px;line-height:1;text-transform:uppercase;margin-top:6px}
+.thumb.label .r{display:block;width:60%;height:2px;background:var(--red);margin:6px auto}
+.thumb.label .s{font-family:var(--f-serif);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
+@media (max-width:760px){.reel{grid-template-columns:40px minmax(0,1fr) 84px;}.reel .desc{grid-column:2/4}.reel .thumb{width:84px;grid-row:1;grid-column:3}}
+
+/* Prosessen */
+.proc-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-bottom:56px}
+.proc-intro p{font-size:18px;color:#cfc9bd}
+.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,5vw,72px);padding-block:clamp(36px,5vw,64px);border-bottom:1px solid var(--line);align-items:start}
+.step:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,300px)}
+.step:nth-child(even) .media{order:2}
+.step .media{display:grid;gap:10px;min-width:0}
+.step .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.step .vid.sq{aspect-ratio:1}
+.step .vid.sub{width:62%;aspect-ratio:3/4;justify-self:end}
+.step .mc{position:absolute;left:8px;bottom:8px;font-family:var(--f-mono);font-size:11px;background:rgba(12,14,13,.8);padding:4px 7px;border-radius:2px}
+.step .vid{position:relative;aspect-ratio:9/16;border-radius:3px;overflow:hidden;background:var(--coal);max-width:100%}
+.step video,.step .vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.step .txt{display:grid;gap:16px;min-width:0;align-content:start;padding-top:8px}
+.step .no{font-family:var(--f-mono);font-size:13px;color:var(--red);letter-spacing:.1em}
+.step h3{font-size:clamp(48px,7vw,104px)}
+.step .meta{font-family:var(--f-mono);font-size:13px;color:var(--aurora)}
+.step p{font-size:17px;color:#cfc9bd;max-width:60ch}
+.step .facts2{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.step .facts2 span{font-family:var(--f-mono);font-size:12px;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--bone)}
+@media (max-width:760px){.step,.step:nth-child(even){grid-template-columns:1fr}.step:nth-child(even) .media{order:0}.step .media{width:min(100%,340px)}.proc-intro{grid-template-columns:1fr}}
+
+/* Chalk timeline: one line through every step, plan to bottle */
+.steps{--rail:76px;position:relative;padding-left:var(--rail)}
+.steps::before{content:"";position:absolute;left:calc(var(--rail)/2 - 1px);top:0;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,rgba(232,238,233,.3) 0 10px,transparent 10px 17px)}
+.rail-fill{position:absolute;left:calc(var(--rail)/2 - 1px);top:0;width:2px;height:0;background:var(--aurora);box-shadow:0 0 12px rgba(98,224,163,.7);pointer-events:none}
+.step{position:relative}
+.step .node{position:absolute;left:calc(var(--rail)/-2 - 21px);top:clamp(36px,5vw,64px);width:42px;height:42px;display:grid;place-items:center;background:var(--ink);border:1px solid var(--line);font-family:var(--f-display);font-weight:800;font-size:18px;color:var(--steel);transition:background .4s,border-color .4s,color .4s;z-index:1}
+.step .node small{position:absolute;left:4px;top:2px;font-family:var(--f-mono);font-size:8px;font-weight:400}
+.step.lit .node{background:var(--chem);border-color:var(--aurora);color:var(--bone)}
+.step .tl{color:var(--steel)}
+.step .txt a{color:var(--aurora)}
+.tavle{margin-top:6px;padding:16px 20px 18px;background:radial-gradient(120% 90% at 15% 0%,#22302a 0%,#172019 70%);border:1px solid #2f3e36;border-radius:6px;box-shadow:inset 0 0 40px rgba(0,0,0,.5);font-family:"Patrick Hand","Comic Sans MS",cursive;color:#eef3ef;letter-spacing:.01em;display:grid;gap:10px;max-width:64ch}
+.tavle .th{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
+.tavle .chem{font-size:21px;line-height:1.2;color:#f3e39a}
+.tavle ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:2px 20px;font-size:19px;line-height:1.4}
+.tavle li::before{content:"– ";color:var(--aurora)}
+.tavle .tip{font-size:18px;line-height:1.45;border-top:1px dashed rgba(233,239,233,.18);padding-top:10px}
+.tavle .tip b{display:block;font-family:var(--f-mono);font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--aurora);margin-bottom:2px}
+.tavle .tip a{font-family:var(--f-mono);font-size:11px;color:var(--steel);white-space:nowrap}
+.crit{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;border:1px solid rgba(214,64,47,.55);background:rgba(214,64,47,.1);border-radius:4px;padding:9px 12px;font-family:var(--f-body);font-size:14px;line-height:1.4;color:#f3d9d4}
+.crit b{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.renhold{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 24px;align-items:baseline;border:1px solid rgba(214,64,47,.55);border-left:4px solid var(--red);padding:16px 20px;margin-bottom:40px;max-width:900px}
+.renhold b{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.renhold p{margin:0;color:#e3ddd2}
+.renhold em{font-style:normal;color:var(--red)}
+@media (max-width:760px){.steps{--rail:36px}.step .node{width:30px;height:30px;font-size:13px;left:calc(var(--rail)/-2 - 15px)}.step .node small{display:none}.renhold{grid-template-columns:1fr}.tavle{padding:14px 14px 16px}.tavle ul{font-size:18px}.tavle .tip{font-size:17px}}
+
+/* A til Å */
+.aa-fig{margin:0 auto;max-width:620px}
+.aa-fig img{display:block;width:100%;height:auto;border-radius:4px}
+.aa-fig figcaption{margin-top:14px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--steel);text-align:center}
+/* Quick-jump dock: Prosessen and Oppskrifter reachable from anywhere */
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;gap:4px;padding:5px;background:rgba(21,25,23,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5);max-width:calc(100% - 24px)}
+.dock a,.dock button{font:600 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--bone);background:none;border:0;border-radius:999px;padding:11px 14px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.dock a:hover,.dock button:hover,.dock .on{background:var(--bone);color:var(--ink)}
+.dock .top{color:var(--steel);padding-inline:12px}
+.dock-steps{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(70px + env(safe-area-inset-bottom,0px));z-index:56;width:min(420px,calc(100% - 24px));background:var(--coal);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.dock-steps a{display:flex;gap:10px;align-items:baseline;padding:10px;border-radius:8px;text-decoration:none;font-size:14px}
+.dock-steps a:hover,.dock-steps a:focus-visible{background:var(--ink)}
+.dock-steps a b{font-family:var(--f-mono);font-size:11px;color:var(--red);font-weight:600}
+.jump{position:sticky;top:calc(60px + env(safe-area-inset-top,0px));z-index:20;display:flex;gap:6px;overflow-x:auto;padding-block:10px;margin-bottom:8px;background:var(--ink);scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none;font-family:var(--f-mono);font-size:12px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:var(--steel)}
+.jump a b{color:var(--red);font-weight:600;margin-right:6px}
+.jump a.on{border-color:var(--bone);color:var(--bone)}
+.step,#oppskrifter,#prosessen,#a-til-aa{scroll-margin-top:120px}
+footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+/* Oppskrifter */
+.recipes{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start}
+.card{background:var(--bone);color:#1b1d1c;border-radius:3px;padding:clamp(18px,3vw,34px);min-width:0}
+.card .head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;border-bottom:2px solid #1b1d1c;padding-bottom:14px}
+.card h3{font-size:clamp(40px,5vw,68px);color:#1b1d1c}
+.card .tag{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid #b9b2a4;font-variant-numeric:tabular-nums}
+.stats div{padding:14px 8px 14px 0}
+.stats b{display:block;font-family:var(--f-display);font-size:34px;font-weight:800;line-height:1}
+.stats span{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5d5a52}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin-top:22px}
+.card h4{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;color:#a3311f}
+.scroll-x{overflow-x:auto}
+.card table{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.card td{padding:6px 6px 6px 0;border-bottom:1px solid #d5cfc2;vertical-align:top;white-space:nowrap}
+.card td:last-child{text-align:right;padding-right:0}
+.card .note{font-size:14px;margin-top:18px;color:#3c3b36}
+.soon{display:grid;gap:12px}
+.soon .s{border:1px dashed var(--line);border-radius:3px;padding:18px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.soon .s b{font-family:var(--f-display);font-weight:800;font-size:26px;text-transform:uppercase;line-height:1}
+.soon .s span{font-family:var(--f-mono);font-size:11px;color:var(--steel);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.soon p{font-size:14px;color:var(--steel)}
+@media (max-width:900px){.recipes{grid-template-columns:1fr}.rgrid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Gjestebrygger */
+.guest{display:grid;grid-template-columns:minmax(0,860px);gap:clamp(30px,6vw,80px);align-items:center}
+.guest .big{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(48px,7vw,104px);line-height:.88}
+.guest .big em{font-style:normal;color:var(--aurora)}
+.guest ol{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
+.guest li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.guest li span{font-family:var(--f-mono);font-size:12px;color:var(--red);padding-top:3px}
+.guest .photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.guest .photos img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:3px;display:block}
+.guest .photos img:nth-child(2){margin-top:60px}
+.where{font-family:var(--f-mono);font-size:13px;color:var(--steel);margin-top:22px}
+@media (max-width:860px){.guest{grid-template-columns:1fr}}
+
+@keyframes mq{to{transform:translateX(-50%)}}
+
+footer{padding-block:60px calc(110px + env(safe-area-inset-bottom,0px))}
+footer .row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;border-top:1px solid var(--line);padding-top:28px}
+footer .mark{display:flex;gap:14px;align-items:center}
+footer .mark svg{width:40px;height:52px}
+footer .mark b{font-family:var(--f-display);font-weight:900;font-size:40px;text-transform:uppercase;line-height:.9;display:block}
+footer small{font-family:var(--f-mono);font-size:12px;color:var(--steel);display:block;max-width:46ch}
+
+@media (prefers-reduced-motion:reduce){
+  .roll span{transition:none}
+  #film{height:auto}
+  .stage{position:relative;height:auto;padding-block:120px 60px}
+  .giant{position:relative;inset:auto;margin-bottom:20px}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 40 52">
+      <!-- two daggers sharing one crossguard, after the Breaking Bud label -->
+      <path fill="currentColor" d="M2 9c5 1 9 1 12 0V6.5L15.2 2h1.6l1.2 4.5V9h4V6.5L23.2 2h1.6l1.2 4.5V9c3 1 7 1 12 0l-1.5 3.2c-3.2-.9-7-.9-10.5 0V22l-1.2 26-1-26v-9.6h-4V22l-1.2 28-1-28v-9.8c-3.5-.9-7.3-.9-10.5 0z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <a class="brand" href="#film" aria-label="Breaking Bud, til toppen">
+    <svg><use href="#mark"/></svg><b>Breaking Bud</b>
+  </a>
+  <nav class="links" aria-label="Hovedmeny">
+    <a href="#om-oss"><span class="roll"><span data-i18n="nav1" data-t="Om oss">Om oss</span></span></a>
+    <a href="#olet"><span class="roll"><span data-i18n="nav2" data-t="Ølet">Ølet</span></span></a>
+    <a href="#prosessen"><span class="roll"><span data-i18n="nav3" data-t="Prosessen">Prosessen</span></span></a>
+    <a href="#oppskrifter"><span class="roll"><span data-i18n="nav4" data-t="Oppskrifter">Oppskrifter</span></span></a>
+    <a href="#gjest"><span class="roll"><span data-i18n="nav5" data-t="Gjestebrygger">Gjestebrygger</span></span></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Språk / Language">
+    <button id="lang-no" type="button" aria-pressed="true">NO</button>
+    <button id="lang-en" type="button" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<main>
+<!-- ================= FILM ================= -->
+<section id="film" aria-label="Introfilm">
+  <div class="stage">
+    <video id="introv" class="introv" src="intro/intro.mp4" poster="intro/intro.jpg" autoplay muted loop playsinline preload="auto" aria-label="Kort introfilm: to bryggere i gule drakter og gassmasker kommer ut av en bobil i snøen i Tromsø med bryggekjelen og skåler, før Breaking Bud-dolken"></video>
+    <div class="vshade"></div>
+    <div class="giant" aria-hidden="true"><span class="l" id="gL" data-t="Breaking">Breaking</span><span class="r" id="gR" data-t="Bud">Bud</span></div>
+    <div class="intro">
+      <span class="eyebrow serif" data-i18n="kicker">Mikrobryggeri · Tromsø</span>
+      <p data-i18n="intro">Fra oppskrift til ferdig flaske, slik vi brygger i garasjen. Scroll for å følge med.</p>
+    </div>
+    <button class="snd" id="snd" type="button" aria-pressed="false"><span data-i18n="snd">Lyd på</span></button>
+    <div class="cue" id="cue" data-i18n="cue">Scroll ↓</div>
+    <div class="side r">Eidkjosen, Kvaløya<br>69.65° N · 18.75° E</div>
+  </div>
+</section>
+
+<!-- ================= OM OSS ================= -->
+<section class="block" id="om-oss">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="h-gang">Om oss</h2><span class="eyebrow" data-i18n="e-gang">Stiftet 2024</span></div>
+    <div class="gang">
+      <div>
+        <div class="story">
+          <p data-i18n="g1">Fem kompiser fra Tromsø bestemte seg for å lage ølet selv. Det er sosialt, det er spennende, og ølet smaker bedre når man har laget det sammen.</p>
+          <p data-i18n="g2">Bryggeriet er garasjene til to av oss i Eidkjosen på Kvaløya. De blir gjort om til bryggeri hver gang de bedre halvdelene gir oss lov.</p>
+          <p data-i18n="g3">Ølet selges ikke. Det hadde vært en drøm å gjøre det en dag, men inntil videre blir det julegaver og en dyr hobby.</p>
+        </div>
+        <div class="name-origin">
+          <div class="lockup" aria-label="Breaking Bud"><span class="box">Br<sup>35</sup></span><span>eaking</span>&nbsp;<span class="box">B<sup>5</sup></span><span>ud</span></div>
+          <p data-i18n="g4">Navnet spiller på TV-serien Breaking Bad. «Bud» betyr både Budweiser og buddy, altså kompis. Grunnstoffet bor har atomnummer 5, like mange som oss.</p>
+        </div>
+      </div>
+      <figure>
+        <img src="img/1048.webp" alt="Breaking Bud-motivet på ryggen av jakken: gjengen under nordlyset, med en katt og en hund" loading="lazy" width="1100" height="1100">
+        <figcaption data-i18n="cap1">Uniformen. Logoen viser gjengen under nordlyset, med en katt og en hund på vakt.</figcaption>
+      </figure>
+    </div>
+    <div class="hist">
+      <h3 class="sub-h" data-i18n="h-hist">Historien</h3>
+      <div class="hist-grid">
+      <figure class="backlabel"><img src="img/bakside.webp" alt="Baksideetiketten: Breaking Bud, et mini mikro garasjebryggeri på Kvaløya. Stiftet i 2024. Gjengen rundt bordet i garasjen med en katt og en hund." loading="lazy" width="870" height="1808"><figcaption data-i18n="cap-back">Baksideetiketten, slik den står på flaskene.</figcaption></figure>
+      <div>
+      <blockquote class="motto" data-i18n="motto">«Et mini mikro garasjebryggeri på Kvaløya som kombinerer fantastiske smaker med ølbrygging, øldrikking og god stemning.»</blockquote>
+      <ol class="milestones">
+        <li><b data-i18n="m1t">2024</b><span data-i18n="m1">Gjengen stiftes. Fem kompiser, ett bryggeverk og to garasjer i Eidkjosen.</span></li>
+        <li><b data-i18n="m2t">Første brygg</b><span data-i18n="m2">Torpedo Judas IPA blir vårt første vellykkede brygg. Etter det var det ingen vei tilbake.</span></li>
+        <li><b data-i18n="m3t">Uniformen</b><span data-i18n="m3">Jakker med dolken på brystet og gjengen under nordlyset på ryggen, med en katt og en hund på vakt.</span></li>
+        <li><b data-i18n="m4t">I dag</b><span data-i18n="m4">Seks øl, egne etiketter, gaver til venner og naboer, og gjestebryggere som stikker innom garasjen.</span></li>
+      </ol>
+      </div>
+      </div>
+    </div>
+    <h3 class="sub-h" data-i18n="h-crew">Gjengen</h3>
+    <ul class="crew" aria-label="Gjengen som periodesystem">
+      <li class="pt" tabindex="0" data-n="Birger"><img src="img/face-bp.webp" alt="Birger Pedersen" loading="lazy"><div class="el-face"><span class="z">1</span><span class="s">Bp</span><span class="nm">Birger Pedersen</span></div></li>
+      <li class="pt" tabindex="0" data-n="Vegard"><img src="img/face-vj.webp" alt="Vegard Johansen" loading="lazy"><div class="el-face"><span class="z">2</span><span class="s">Vj</span><span class="nm">Vegard Johansen</span></div></li>
+      <li class="pt" tabindex="0" data-n="Andreas"><img src="img/face-am.webp" alt="Andreas Myrvold" loading="lazy"><div class="el-face"><span class="z">3</span><span class="s">Am</span><span class="nm">Andreas Myrvold</span></div></li>
+      <li class="pt" tabindex="0" data-n="Markus"><img src="img/face-mo.webp" alt="Markus Ottesen" loading="lazy"><div class="el-face"><span class="z">4</span><span class="s">Mo</span><span class="nm">Markus Ottesen</span></div></li>
+      <li class="pt" tabindex="0" data-n="Fredrik"><img src="img/face-fz.webp" alt="Fredrik Zahl Karlsen" loading="lazy"><div class="el-face"><span class="z">5</span><span class="s">Fz</span><span class="nm">Fredrik Zahl Karlsen</span></div></li>
+    </ul>
+    <div class="crew-cap"><span data-i18n="crew-cap">Hold musen over eller trykk på et grunnstoff for å se hvem det er.</span><span data-i18n="crew-cap2">Fra Markus' 40-årslag og andre viktige anledninger</span></div>
+  </div>
+</section>
+
+<!-- ================= ØLET ================= -->
+<section class="block" id="olet">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="h-beer">Ølet</h2><span class="eyebrow" data-i18n="e-beer">Seks øl fra garasjen</span></div>
+    <ol class="reels">
+      <li class="reel">
+        <span class="num">01</span>
+        <h3>Hot Mango IPA</h3>
+        <div class="desc"><b data-i18n="b1t">Flaggskipet</b><span data-i18n="b1">Saftig IPA med mango, Citra og Mosaic. Den vi brygger oftest, og den som går tomt først.</span></div>
+        <div class="thumb"><img src="img/1049.webp" alt="Vørter som koker" loading="lazy"></div>
+      </li>
+      <li class="reel">
+        <span class="num">02</span>
+        <h3>Christmas IPA</h3>
+        <div class="desc"><b data-i18n="b2t">Juleølet</b><span data-i18n="b2">Hot Mango-basen med lokale habaneroer badet i gin. Varmer godt i mørketida.</span></div>
+        <div class="thumb"><img src="img/1036.webp" alt="Flaske med Breaking Bud Christmas IPA-etikett" loading="lazy"></div>
+      </li>
+      <li class="reel">
+        <span class="num">03</span>
+        <h3>Sommer Synden Ale</h3>
+        <div class="desc"><b data-i18n="b3t">Intern vinner</b><span data-i18n="b3">Frisk sommerale for lange kvelder under midnattssola.</span></div>
+        <div class="thumb"><img src="img/ss-kasse.webp" alt="Flaske med Breaking Bud Sommer Synden Ale-etikett over en kasse med ferske flasker" loading="lazy"></div>
+      </li>
+      <li class="reel">
+        <span class="num">04</span>
+        <h3>Better Call Zahl</h3>
+        <div class="desc"><b data-i18n="b4t">Fredriks øl</b><span data-i18n="b4">Rolig og ren blonde, oppkalt etter Fredrik Zahl. Etiketten låner vekten fra Better Call Saul.</span></div>
+        <div class="thumb"><img src="img/bcz.webp" alt="Flasker med Better Call Zahl Blonde-etikett" loading="lazy"></div>
+      </li>
+      <li class="reel">
+        <span class="num">05</span>
+        <h3>Torpedo Judas IPA</h3>
+        <div class="desc"><b data-i18n="b5t">Det første vellykkede brygget</b><span data-i18n="b5">Her startet Breaking Bud. Ølet som beviste at garasjen kunne levere.</span></div>
+        <div class="thumb"><img src="img/torpedo.webp" alt="Flaske med Breaking Bud Torpedo Judas IPA-etikett" loading="lazy"></div>
+      </li>
+      <li class="reel">
+        <span class="num">06</span>
+        <h3>Aurora Beerialis</h3>
+        <div class="desc"><b data-i18n="b6t">Til nordlysgjestene</b><span data-i18n="b6">Brygget for gjestene som kommer for nordlyset. Etiketten har dolken i nordlysfarger.</span></div>
+        <div class="thumb"><img src="img/aurora-flaske.webp" alt="Flaske med Breaking Bud Aurora Beerialis-etikett" loading="lazy"></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= PROSESSEN ================= -->
+<section class="block" id="prosessen" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="h-proc">Prosessen</h2><span class="eyebrow" data-i18n="e-proc">13 steg · fra plan til flaske</span></div>
+    <div class="proc-intro">
+      <p data-i18n="p-intro1">Én uke med planlegging, én lang bryggedag, to uker i gjæringskaret og to uker på flaske. Hvert steg har en tavle med stikkord og pro-tips, så du kan følge prosessen og brygge selv hjemme.</p>
+      <p data-i18n="p-intro2">Klippene er fra en ekte bryggedag hos oss, og tallene er fra Hey Mango IPA. Tidene på tidslinjen er omtrentlige. Pro-tipsene fra forum og nettsider lenker til kilden.</p>
+    </div>
+    <div class="renhold"><b data-i18n="rh-t">Renhold</b><p data-i18n="rh">Alt før koken er tilgivende, for koken dreper det meste. Alt etter koken er sårbart. Fra kjølingen til kapselen er på, skal alt som rører ølet være vasket og desinfisert. Stegene merket <em>Renhold kritisk</em> er der en infeksjon kan ødelegge hele satsen.</p></div>
+    <nav class="jump" id="jump" aria-label="Hopp til steg"></nav>
+    <ol class="steps" id="steps"></ol>
+  </div>
+</section>
+
+<!-- ================= A TIL Å ================= -->
+<section class="block" id="a-til-aa" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="h-aa">Fra A til Å</h2><span class="eyebrow" data-i18n="e-aa">Tegneserien</span></div>
+    <figure class="aa-fig"><img src="img/a-til-aa.webp" alt="Tegneserie: Breaking Bud, ølbrygging fra A til Å, med de fem kompisene i garasjen" loading="lazy" width="724" height="2172"><figcaption data-i18n="aa-lead">Fra garasjen til ølglade venner. Hele bryggingen som tegneserie.</figcaption></figure>
+  </div>
+</section>
+
+<!-- ================= OPPSKRIFTER ================= -->
+<section class="block" id="oppskrifter" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="h-rec">Oppskrifter</h2><span class="eyebrow" data-i18n="e-rec">Brygg selv</span></div>
+    <div class="recipes">
+      <article class="card" aria-labelledby="r1">
+        <div class="head">
+          <div><div class="tag" data-i18n="r-tag">American IPA · All Grain · 21 liter</div><h3 id="r1">Hey Mango IPA</h3></div>
+          <div class="tag" data-i18n="r-base">Basen for Hot Mango og Christmas IPA</div>
+        </div>
+        <div class="stats">
+          <div><b>1.058</b><span>OG</span></div>
+          <div><b>1.010</b><span>FG</span></div>
+          <div><b>6,3 %</b><span>ABV</span></div>
+          <div><b>47</b><span>IBU</span></div>
+          <div><b>4,4</b><span>SRM</span></div>
+        </div>
+        <div class="rgrid">
+          <div>
+            <h4 data-i18n="r-malt">Malt</h4>
+            <div class="scroll-x"><table>
+              <tr><td>Pilsner (UK)</td><td>2,55 kg</td></tr>
+              <tr><td>Pale 2-Row (UK)</td><td>2,55 kg</td></tr>
+              <tr><td data-i18n="r-oats">Havreflak</td><td>566 g</td></tr>
+            </table></div>
+            <h4 style="margin-top:20px" data-i18n="r-other">Gjær og annet</h4>
+            <div class="scroll-x"><table>
+              <tr><td>Safale US-05</td><td>19 °C</td></tr>
+              <tr><td data-i18n="r-mango">Mangopuré, sekundær</td><td>800 g · 7 d</td></tr>
+              <tr><td data-i18n="r-mash">Mesking</td><td>65 °C · 60 min</td></tr>
+              <tr><td data-i18n="r-boil">Koking</td><td>60 min</td></tr>
+            </table></div>
+          </div>
+          <div>
+            <h4 data-i18n="r-hops">Humle</h4>
+            <div class="scroll-x"><table>
+              <tr><td>Columbus</td><td>8 g · 60 min</td></tr>
+              <tr><td>Cascade</td><td>24 g · 30 min</td></tr>
+              <tr><td>Columbus</td><td>24 g · 10 min</td></tr>
+              <tr><td>Amarillo</td><td>24,5 g · 0 min</td></tr>
+              <tr><td>Citra</td><td>24 g · 0 min</td></tr>
+              <tr><td>Citra <span data-i18n="r-dry">(tørrhumle)</span></td><td>45 g · 3 d</td></tr>
+              <tr><td>Mosaic <span data-i18n="r-dry2">(tørrhumle)</span></td><td>30 g · 3 d</td></tr>
+            </table></div>
+          </div>
+        </div>
+        <p class="note" data-i18n="r-note">Vann: 17,6 L meskevann (3,1 L/kg) og 17,3 L skyllevann. 28 L før koking, 21 L inn i gjæringskaret.</p>
+      </article>
+      <div class="soon">
+        <div class="s"><b>Christmas IPA</b><span data-i18n="soon">Kommer</span></div>
+        <div class="s"><b>Sommer Synden Ale</b><span data-i18n="soon2">Kommer</span></div>
+        <div class="s"><b>Better Call Zahl</b><span data-i18n="soon3">Kommer</span></div>
+        <p data-i18n="soon-p">Flere oppskrifter kommer. Brygger du en av dem, vil vi gjerne smake.</p>
+        <img src="img/1027.webp" alt="Maltsekk fra Viking Malt" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px;margin-top:8px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GJESTEBRYGGER ================= -->
+<section class="block" id="gjest" style="padding-top:0">
+  <div class="wrap">
+    <div class="guest">
+      <div>
+        <span class="eyebrow" data-i18n="e-guest">Gjestebrygger</span>
+        <div class="big" data-i18n="guest-big" style="margin-top:14px">Bli med i <em>garasjen</em></div>
+        <ol>
+          <li><span>01</span><div data-i18n="gs1">Døra står åpen. Venner, kolleger, naboer og andre nysgjerrige er velkomne som gjestebryggere for en dag.</div></li>
+          <li><span>02</span><div data-i18n="gs2">Du er med på hele bryggedagen, fra mesking til kjøling, og ser hvordan ølet blir til.</div></li>
+          <li><span>03</span><div data-i18n="gs3">Spør en av oss, så finner vi en dag som passer. Vi er fem kompiser med en hobby, ikke en lukket sekt.</div></li>
+        </ol>
+        <p class="where">Eidkjosen, Kvaløya · Tromsø</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="dock" aria-label="Snarveier">
+  <button type="button" id="dock-proc" aria-expanded="false" aria-controls="dock-steps" data-i18n="d1">Prosessen</button>
+  <a href="#oppskrifter" id="dock-rec" data-i18n="d2">Oppskrifter</a>
+  <a href="#a-til-aa" id="dock-aa">A–Å</a>
+  <a href="#film" class="top" aria-label="Til toppen">↑</a>
+</nav>
+<div class="dock-steps" id="dock-steps" hidden></div>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div class="mark"><svg><use href="#mark"/></svg><div><b>Breaking Bud</b><span class="serif" style="font-size:11px;color:var(--steel)">Mikrobryggeri</span></div></div>
+      <small data-i18n="foot">Garasjebryggeri i Eidkjosen, Kvaløya. Ølet er ikke til salgs.</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- data ---------- */
+  /* m = media for the process section: v = video clip, i = photo. First item is the large one. */
+  var CH=[
+    {k:"plan",a:0,b:19,m:[["i","img/1052.webp"]],no:["Planlegging","Oppskrift, bestilling og innkjøp"],en:["Planning","Recipe, order and shopping"]},
+    {k:"vann",a:20,b:39,m:[["i","img/1025.webp"]],no:["Vann","17,6 L meskevann varmes opp"],en:["Water","17.6 L strike water heats up"]},
+    {k:"mesking",a:40,b:59,m:[["i","img/1026.webp"]],no:["Mesking","65 °C i 60 minutter"],en:["Mash","65 °C for 60 minutes"]},
+    {k:"skylling",a:60,b:95,m:[["v","clips/skylling"]],no:["Skylling","Maltkurven løftes, 17,3 L skyllevann"],en:["Sparge","Grain basket lifted, 17.3 L sparge"]},
+    {k:"koking",a:96,b:113,m:[["v","clips/koking"],["i","img/1046.webp","Vørter tappes fra kjelen","Wort drawn from the kettle"]],no:["Koking","28 L vørter, 60 minutter"],en:["Boil","28 L of wort, 60 minutes"]},
+    {k:"humle",a:114,b:131,m:[["v","clips/humle"]],no:["Humle","Columbus, Cascade, Amarillo, Citra"],en:["Hops","Columbus, Cascade, Amarillo, Citra"]},
+    {k:"kjoling",a:132,b:152,m:[["v","clips/kjoling"]],no:["Kjøling","Ned til 19 °C med kjølespiral"],en:["Chill","Down to 19 °C with a chiller"]},
+    {k:"overforing",a:153,b:182,m:[["v","clips/overforing"]],no:["Overføring og gjær","21 L inn i karet, gjæren på"],en:["Transfer and yeast","21 L into the fermenter, yeast in"]},
+    {k:"maling",a:183,b:202,m:[["i","img/1030.webp"],["v","clips/maling-etter","Måling etter gjæring","Reading after fermentation"]],no:["Måling","OG 1.058 på refraktometeret"],en:["Measure","OG 1.058 on the refractometer"]},
+    {k:"tapping",a:203,b:223,m:[["v","clips/tapping"],["i","img/vask.webp","Flaskene desinfiseres på flasketreet","Bottles sanitised on the bottle tree"]],no:["Tapping","På flaske med litt sukker"],en:["Bottling","Into bottles with a little sugar"]},
+    {k:"kapsling",a:224,b:244,m:[["v","clips/korking"],["i","img/1033.webp","Flaskene står klare til kapsling","Bottles ready for capping"]],no:["Kapsling","Kapsel på, en etter en"],en:["Capping","Caps on, one by one"]},
+    {k:"etikett",a:245,b:268,m:[["i","img/1037.webp"],["p","img/ss.webp","img/aurora.webp","img/1035.webp"]],no:["Etikett","Egne etiketter fra garasjen"],en:["Label","Our own labels from the garage"]},
+    {k:"gave",a:269,b:292,m:[["v","clips/gave"]],no:["Gave","Fantastiske julegaver"],en:["Gift","Fantastic Christmas presents"]}
+  ];
+  /* Chalkboard timeline: t = time on the line, sym = element badge, kw = keywords, chem = formula,
+     g = tip from our garage, f = tip from forums/the web with source, c = hygiene-critical note */
+  var HBA="https://forum.homebrewersassociation.org/t/";
+  var TAV=[
+    {t:["T−7 d","T−7 d"],sym:"Pl",kw:{no:["Velg oppskrift","Bestill hos Kjeller 5","Mango, habanero, gin","Sjekkliste"],en:["Pick a recipe","Order from Kjeller 5","Mango, habanero, gin","Checklist"]},
+     g:{no:"Send bestillingen på e-post noen dager før. Da står alt klart når du kommer.",en:"Email the order a few days ahead. Everything is ready when you arrive."},
+     f:{no:"Vask benk, vask og kjele før du starter, og bruk et desinfeksjonsmiddel som ikke skal skylles av, som Star San.",en:"Clean the bench, sink and kettle before you start, and use a no-rinse sanitiser such as Star San.",s:"Brewer's Friend",u:"https://www.brewersfriend.com/2008/07/17/first-batch-tips"}},
+    {t:["T+0:00","T+0:00"],sym:"Va",chem:"H₂O, Cl₂ ut",kw:{no:["Varm til ca. 70 °C","3,1 L per kg malt","Sikt over måltemp."],en:["Heat to about 70 °C","3.1 L per kg of malt","Aim above target"]},
+     f:{no:"Springvann med klor? En halv knust Campden-tablett per ca. 40 liter fjerner kloren på sekunder.",en:"Chlorinated tap water? Half a crushed Campden tablet per about 40 litres removes the chlorine in seconds.",s:"HBA-forumet",u:HBA+"campden-tablets/18733"}},
+    {t:["T+0:30","T+0:30"],sym:"Me",chem:"stivelse → maltose",chemEn:"starch → maltose",kw:{no:["Ingen klumper","65 °C i 60 min","Pumpen sirkulerer"],en:["No lumps","65 °C for 60 min","Pump circulates"]},
+     g:{no:"Pakningen ligger i maltposen fra Kjeller 5 med vilje. Da glir den lett på plass når maltkurven settes sammen.",en:"The gasket sits in the malt bag from Kjeller 5 on purpose. That way it slides easily into place when the grain basket goes together."},
+     f:{no:"Tilsett all malten på én gang, rør godt i et par minutter og vent et minutt før du leser av temperaturen.",en:"Add all the grain at once, stir well for a couple of minutes and wait a minute before reading the temperature.",s:"HomeBrewTalk",u:"https://www.homebrewtalk.com/threads/dough-in-time.466738"}},
+    {t:["T+1:30","T+1:30"],sym:"Sk",chem:"pH < 6",kw:{no:["Løft kurven rolig","17,3 L skyllevann","28 L før koking"],en:["Lift the basket slowly","17.3 L sparge water","28 L pre-boil"]},
+     f:{no:"pH betyr mer enn temperatur. Hold kornsengen under ca. 77 °C og følg med på pH mot slutten, ellers trekkes det ut garvestoffer.",en:"pH matters more than temperature. Keep the grain bed below about 77 °C and watch the pH towards the end, or you extract tannins.",s:"HBA-forumet",u:HBA+"sparge-water-temp-and-ph/7520"}},
+    {t:["T+1:45","T+1:45"],sym:"Ko",chem:"100 °C",kw:{no:["60 min","Følg med på skummet","Lokket av"],en:["60 min","Watch the foam","Lid off"]},
+     f:{no:"Ha en sprayflaske med vann klar til skummet, og skru ned varmen rett før kokepunktet.",en:"Keep a spray bottle of water ready for the foam, and turn the heat down just before the boil.",s:"HBA-forumet",u:HBA+"avoiding-boil-overs-advice-for-the-newcomers/23443"}},
+    {t:["T+1:45–2:45","T+1:45–2:45"],sym:"Hu",chem:"α-syrer → iso-α-syrer",chemEn:"alpha acids → iso-alpha acids",kw:{no:["Tidlig gir bitterhet","Sent gir aroma","47 IBU"],en:["Early for bitterness","Late for aroma","47 IBU"]},
+     f:{no:"Prøv en humlestand: lokket på, rør til pelletsene er våte, og la stå 20–30 minutter før kjøling.",en:"Try a hop stand: lid on, stir until the pellets are wet, and let it sit 20–30 minutes before chilling.",s:"HBA-forumet",u:HBA+"hop-stand-vs-flame-out-addition/15019"}},
+    {t:["T+2:45","T+2:45"],sym:"Kj",chem:"100 → 19 °C",kw:{no:["Raskt ned","19 °C","Lokket på"],en:["Down fast","19 °C","Lid on"]},
+     c:{no:"Fra nå av kan bakterier ødelegge alt. Alt som rører vørteren skal være desinfisert.",en:"From here on, bacteria can ruin everything. Anything that touches the wort must be sanitised."},
+     f:{no:"Legg kjølespiralen i kjelen de siste 15 minuttene av koken. Da er den desinfisert når du trenger den.",en:"Drop the chiller into the kettle for the last 15 minutes of the boil. Then it is sanitised when you need it.",s:"HBA-forumet",u:HBA+"wort-chiller/24233"}},
+    {t:["T+3:15","T+3:15"],sym:"Gj",chem:"C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂",kw:{no:["Litt oksygen nå","Gjærlås på","19 °C i 14 dager","Mango mot slutten"],en:["A little oxygen now","Airlock on","19 °C for 14 days","Mango near the end"]},
+     c:{no:"Kar, lokk, gjærlås og slange skal være desinfisert. Frukt og krydder også.",en:"Fermenter, lid, airlock and hose must be sanitised. Fruit and spices too."},
+     g:{no:"Habaneroene til Christmas IPA bades i gin før de går i karet. Alkoholen tar bakteriene.",en:"The habaneros for the Christmas IPA are soaked in gin before they go in. The alcohol deals with the bacteria."},
+     f:{no:"Rehydrer tørrgjæren i ti ganger sin vekt i lunkent vann (32–38 °C) i 15 minutter før du tilsetter den.",en:"Rehydrate dry yeast in ten times its weight of lukewarm water (32–38 °C) for 15 minutes before pitching.",s:"HBA-forumet",u:HBA+"hydrating-us-05/15558"}},
+    {t:["Dag 1 og 14","Day 1 and 14"],sym:"Må",chem:"ABV = (OG − FG) × 131,25",chemEn:"ABV = (OG − FG) × 131.25",kw:{no:["OG før","FG etter","Lik to dager på rad"],en:["OG before","FG after","Same two days running"]},
+     c:{no:"Prøven går aldri tilbake i karet.",en:"The sample never goes back into the fermenter."},
+     f:{no:"Kalibrer refraktometeret mot destillert vann, som skal vise 0, hver gang du bruker det.",en:"Calibrate the refractometer against distilled water, which should read 0, every time you use it.",s:"HBA-forumet",u:HBA+"improved-refractometer-correction-calculator/24740"}},
+    {t:["Dag 14","Day 14"],sym:"Ta",chem:"sukker + gjær → CO₂",chemEn:"sugar + yeast → CO₂",kw:{no:["Desinfiserte flasker","Sukker i hver flaske","2–3 cm luft"],en:["Sanitised bottles","Sugar in every bottle","2–3 cm headspace"]},
+     c:{no:"Én skitten flaske kan gi surt øl. Vask, desinfiser og la flaskene stå opp ned til de er klare.",en:"One dirty bottle can give sour beer. Wash, sanitise and leave the bottles upside down until ready."},
+     f:{no:"Regn ut sukkeret med en kullsyrekalkulator. 2,3–2,5 volumer CO₂ passer de fleste ales. For mye sukker gir flaskebomber.",en:"Work out the sugar with a carbonation calculator. 2.3–2.5 volumes of CO₂ suits most ales. Too much sugar makes bottle bombs.",s:"Brewfather",u:"https://docs.brewfather.app/brewing-knowledge/packaging-and-carbonation"}},
+    {t:["Dag 14","Day 14"],sym:"Ka",chem:"CO₂ ≈ 2,4 vol",chemEn:"CO₂ ≈ 2.4 vol",kw:{no:["Kapsel på med en gang","2 uker i romtemp.","Så kjølig"],en:["Cap straight away","2 weeks at room temp.","Then cool"]},
+     c:{no:"Dypp kapslene i desinfeksjonsmiddel før de går på.",en:"Dip the caps in sanitiser before they go on."},
+     f:{no:"Åpne en testflaske etter én og to uker for å sjekke kullsyren.",en:"Open a test bottle after one and two weeks to check the carbonation.",s:"Brewfather",u:"https://docs.brewfather.app/brewing-knowledge/packaging-and-carbonation"}},
+    {t:["Uke 4","Week 4"],sym:"Et",kw:{no:["Eget design","Trykt med lim på","Tørre flasker"],en:["Our own design","Printed with adhesive","Dry bottles"]},
+     f:{no:"Skriver du ut etikettene selv på vanlig papir? Fest dem med limstift eller litt melk. Da løsner de i varmt vann når flasken skal brukes igjen.",en:"Printing labels yourself on plain paper? Stick them on with a glue stick or a little milk. They come off in hot water when the bottle is reused.",s:"HBA-forumet",u:HBA+"bottle-labels/13266"}},
+    {t:["Uke 4 →","Week 4 →"],sym:"Gv",kw:{no:["Kaldt en uke","Skjenk rolig","Gjæren blir igjen"],en:["Cold for a week","Pour gently","Leave the yeast"]},
+     f:{no:"Sett flaskene kaldt en uke før servering, skjenk i én rolig bevegelse og la den siste centimeteren bli igjen i flasken.",en:"Chill the bottles for a week before serving, pour in one smooth motion and leave the last centimetre in the bottle.",s:"HBA-forumet",u:HBA+"sediment-in-bottom-of-bottles/15567"}}
+  ];
+  /* Detailed process text. p = paragraphs, f = key numbers */
+  var STEPS={
+    no:[
+      {p:["Alt starter med en plan. Alle bryggene våre står i bryggepermen, og de vi er mest fornøyde med ligger under <a href='#oppskrifter'>Oppskrifter</a>. Vi velger oppskrift, skalerer til 21 liter og skriver handleliste.",
+          "Malt, humle og gjær bestiller vi hos <a href='https://mack.no/kjeller-5/' target='_blank' rel='noopener'>Kjeller 5</a> i Storgata 4, Macks egen ølbutikk i Tromsø. Send bestillingen på e-post til <a href='mailto:kjeller5@mack.no'>kjeller5@mack.no</a> noen dager før, så får de tid til å gjøre den klar for henting. Legger du litt til rette for at de kan gjøre jobben sin, får du veldig god service.",
+          "Det Kjeller 5 ikke har, handler vi selv: mangopuré til Hot Mango, og lokale habaneroer og gin til Christmas IPA. Sjekk også at du har nok desinfeksjonsmiddel, kapsler og sukker før bryggedagen."],
+       f:["Bryggepermen","Kjeller 5","Ca. en uke før"]},
+      {p:["Alt starter med vann. Vi fyller bryggeverket, et alt-i-ett-kar med varmeelement, pumpe og maltkurv, og varmer det opp til litt over meskestemperatur. Vannet blir kaldere i det malten tilsettes, så vi sikter noen grader høyere enn målet.",
+          "Mengden regnes ut fra maltmengden. Med 5,67 kg malt og en tykkelse på 3,1 liter per kilo blir det 17,6 liter. For tykk mesk gir dårlig utbytte, for tynn gir et tynnere øl."],
+       f:["17,6 L","3,1 L/kg","ca. 70 °C"]},
+      {p:["Mesking er hjertet i bryggingen. Malten kommer i en pose fra Kjeller 5, som på bildet. Knust malt, her pilsnermalt, pale ale-malt og havreflak, røres forsiktig inn i det varme vannet til det ikke er klumper igjen. Klumper er tørre lommer der enzymene ikke kommer til.",
+          "Ved 65 °C jobber enzymene i malten med å bryte stivelse ned til sukker. Vi holder temperaturen i 60 minutter mens pumpen sirkulerer væsken over kornet. 65 °C gir et sukker som gjæren spiser det meste av, og et tørt, drikkbart øl. Havreflakene gir den myke, fyldige munnfølelsen en hazy IPA skal ha."],
+       f:["65 °C","60 min","5,67 kg malt"]},
+      {p:["Når meskingen er ferdig, løfter vi maltkurven og lar den hvile over karet. Så skyller vi kornet med varmt vann for å vaske ut sukkeret som fortsatt sitter igjen. Det kalles sparging, eller skylling.",
+          "Vi bruker 17,3 liter skyllevann og heller det rolig over så kornsengen ikke kollapser. Det som renner ned i karet nå er vørter: søtt, uferdig øl. Målet er 28 liter før koking."],
+       f:["17,3 L skyllevann","28 L før koking"]},
+      {p:["Vørteren varmes til kokepunktet og koker i 60 minutter. Koken dreper bakterier og ville gjærceller, fjerner uønskede smaker og konsentrerer sukkeret når vannet damper av.",
+          "Rett før det koker skummer det kraftig. Det er proteiner som klumper seg sammen, og her må noen følge med så det ikke koker over. Etter en time har vi mistet rundt 5,7 liter til damp."],
+       f:["60 min","-5,7 L avdampet"]},
+      {p:["Humle tilsettes til ulike tider, og tiden avgjør hva den gir. Humle som koker lenge gir bitterhet, humle som kommer sent gir aroma. I Hey Mango går 8 g Columbus i ved 60 minutter, Cascade ved 30 og mer Columbus ved 10.",
+          "Når platen slås av går Amarillo og Citra rett i det varme karet. Da får vi masse tropisk frukt og sitrus uten mer bitterhet. Totalt ender ølet på rundt 47 IBU, som er bittert nok til å balansere sødmen fra malten og mangoen."],
+       f:["5 humlesorter","47 IBU","179,5 g humle"]},
+      {p:["Varm vørter må ned til gjæringstemperatur så fort som mulig. Mens den er lunken er den perfekt mat for bakterier, og langsom kjøling kan gi bismaker. Vi bruker en kjølespiral med kaldt vann som går gjennom slangene mens vørteren pumpes rundt.",
+          "Målet er 19 °C, som er der gjæren US-05 trives. Hold øye med displayet. Alt som rører vørteren fra nå av må være rengjort og desinfisert."],
+       f:["Ned til 19 °C"]},
+      {p:["Kjølt vørter tappes over i gjæringskaret gjennom en slange. Vi lar den plaske litt, for gjæren trenger oksygen i starten for å formere seg. Senere er oksygen fienden, så dette er eneste gang vi vil ha det.",
+          "Så strør vi gjæren, Safale US-05, over og rører den inn, som i klippet, setter på lokket med gjærlås og lar karet stå i fred i rundt to uker ved 19 °C. Mot slutten tilsettes 800 g mangopuré, som får stå i sju dager, og de siste tre dagene får ølet 75 g tørrhumle med Citra og Mosaic."],
+       f:["21 L inn","Safale US-05","~14 dager"]},
+      {p:["Før gjæringen tar vi en dråpe vørter på refraktometeret. Det viser hvor mye sukker som er løst i væsken, målt som egenvekt. Hey Mango skal starte på 1.058.",
+          "Etter gjæringen måler vi igjen, som i det lille klippet. Alkohol forstyrrer refraktometeret, så tallet korrigeres i en kalkulator. Når to målinger med et par dagers mellomrom viser det samme, rundt 1.010, er gjæren ferdig. Forskjellen mellom start og slutt gir alkoholprosenten: (1.058 − 1.010) × 131,25 ≈ 6,3 %."],
+       f:["OG 1.058","FG 1.010","6,3 % ABV"]},
+      {p:["Ferdig gjæret øl er flatt. For å få kullsyre på flasken legger vi en liten sukkertablett i hver flaske før vi fyller dem. Gjærrestene i ølet spiser sukkeret og lager CO₂ som ikke har noe sted å gå, og slik bobler ølet.",
+          "Før det: vask. Hver flaske skylles, vaskes og desinfiseres med et eget middel, og står opp ned på flasketreet til den er klar. Rengjøring er kjedelig, men det viktigste vi gjør. Én skitten flaske kan gi surt eller flatt øl. Vi fyller med en tappestav som stenger når den løftes, så vi slipper søl og får lite oksygen inn. La et par centimeter luft være igjen øverst i halsen."],
+       f:["Desinfiserte flasker","Sukkertablett i hver flaske","2–3 cm luft"]},
+      {p:["Rett etter fylling setter vi på kapsel med en kapsler. Jobb fort, så ølet ikke står åpent lenger enn nødvendig. Det går raskest når én fyller og én kapsler.",
+          "Flaskene står så i romtemperatur i to uker mens kullsyren bygger seg opp, og flytter deretter et kjøligere sted. Tålmodighet lønner seg. En IPA er best fersk, men trenger de ukene på flaske."],
+       f:["2 uker i romtemp.","Så kjølig"]},
+      {p:["Etikettene designer vi selv og bestiller dem ferdig trykket med lim på baksiden. Hvert øl får sitt eget motiv: den hvite dolken på Sommer Synden, nordlysdolken på Aurora Beerialis og en julevariant med nisselue for Christmas IPA.",
+          "Etikettene festes rett på når flaskene er tørre og klare. Det er det siste steget før ølet forlater garasjen."],
+       f:["Sommer Synden","Aurora Beerialis","Christmas IPA"]},
+      {p:["Det meste av ølet blir gaver: til jul, til bursdager og til venner og naboer. Christmas IPA kommer i egen gaveeske.",
+          "Og når kassene er tomme, er det en god grunn til å samles og brygge igjen."],
+       f:["Gaveeske til jul"]}
+    ],
+    en:[
+      {p:["It all starts with a plan. Every brew we have made is in our brewing binder, and the ones we are happiest with are under <a href='#oppskrifter'>Recipes</a>. We pick a recipe, scale it to 21 litres and write a shopping list.",
+          "Malt, hops and yeast we order from <a href='https://mack.no/kjeller-5/' target='_blank' rel='noopener'>Kjeller 5</a> at Storgata 4, Mack's own beer shop in Tromsø. Email the order to <a href='mailto:kjeller5@mack.no'>kjeller5@mack.no</a> a few days ahead so they have time to get it ready for pickup. Make their job a little easier and the service is excellent.",
+          "Whatever Kjeller 5 does not stock, we buy ourselves: mango purée for Hot Mango, and local habaneros and gin for the Christmas IPA. Also check that you have enough sanitiser, caps and sugar before brew day."],
+       f:["The brewing binder","Kjeller 5","About a week ahead"]},
+      {p:["It all starts with water. We fill the brewing system, an all-in-one vessel with heating element, pump and grain basket, and heat it a little above mash temperature. The water cools when the grain goes in, so we aim a few degrees higher than the target.",
+          "The volume follows the grain bill. With 5.67 kg of malt and a thickness of 3.1 litres per kilo we need 17.6 litres. Too thick a mash gives poor efficiency, too thin gives a thinner beer."],
+       f:["17.6 L","3.1 L/kg","about 70 °C"]},
+      {p:["Mashing is the heart of brewing. The malt comes in a bag from Kjeller 5, as in the photo. Crushed malt, here pilsner malt, pale ale malt and flaked oats, is stirred gently into the hot water until there are no lumps left. Lumps are dry pockets the enzymes cannot reach.",
+          "At 65 °C the enzymes in the malt break starch down into sugar. We hold the temperature for 60 minutes while the pump circulates liquid over the grain. 65 °C makes sugars the yeast eats almost completely, giving a dry, drinkable beer. The oats give the soft, full mouthfeel a hazy IPA should have."],
+       f:["65 °C","60 min","5.67 kg malt"]},
+      {p:["When the mash is done, we lift the grain basket and let it rest above the kettle. Then we rinse the grain with hot water to wash out the sugar still left behind. This is called sparging.",
+          "We use 17.3 litres of sparge water and pour slowly so the grain bed does not collapse. What runs into the kettle now is wort: sweet, unfinished beer. The target is 28 litres before the boil."],
+       f:["17.3 L sparge","28 L pre-boil"]},
+      {p:["The wort is brought to a boil and boils for 60 minutes. The boil kills bacteria and wild yeast, drives off unwanted flavours and concentrates the sugar as water evaporates.",
+          "Right before it boils it foams hard. That is proteins clumping together, and someone has to watch so it does not boil over. After an hour we have lost about 5.7 litres to steam."],
+       f:["60 min","-5.7 L boil-off"]},
+      {p:["Hops go in at different times, and the timing decides what they give. Hops boiled long give bitterness, hops added late give aroma. In Hey Mango, 8 g of Columbus goes in at 60 minutes, Cascade at 30 and more Columbus at 10.",
+          "When the heat goes off, Amarillo and Citra go straight into the hot kettle. That gives loads of tropical fruit and citrus without more bitterness. In total the beer lands around 47 IBU, bitter enough to balance the sweetness from malt and mango."],
+       f:["5 hop varieties","47 IBU","179.5 g hops"]},
+      {p:["Hot wort must get down to fermentation temperature as fast as possible. While lukewarm it is perfect food for bacteria, and slow chilling can cause off-flavours. We use a chiller coil with cold water running through it while the wort is pumped around.",
+          "The target is 19 °C, where the US-05 yeast is happy. Keep an eye on the display. Anything that touches the wort from now on must be cleaned and sanitised."],
+       f:["Down to 19 °C"]},
+      {p:["Chilled wort runs into the fermenter through a hose. We let it splash a little, because the yeast needs oxygen at the start to multiply. Later oxygen is the enemy, so this is the only time we want it.",
+          "Then we sprinkle the yeast, Safale US-05, on top and stir it in, as in the clip, fit the lid with an airlock and leave the fermenter alone for about two weeks at 19 °C. Towards the end we add 800 g of mango purée for seven days, and for the last three days the beer gets 75 g of Citra and Mosaic dry hops."],
+       f:["21 L in","Safale US-05","~14 days"]},
+      {p:["Before fermentation we put a drop of wort on the refractometer. It shows how much sugar is dissolved, measured as specific gravity. Hey Mango should start at 1.058.",
+          "After fermentation we measure again, as in the small clip. Alcohol skews the refractometer, so the reading is corrected with a calculator. When two readings a couple of days apart show the same, around 1.010, the yeast is done. The difference between start and finish gives the alcohol content: (1.058 − 1.010) × 131.25 ≈ 6.3 %."],
+       f:["OG 1.058","FG 1.010","6.3 % ABV"]},
+      {p:["Fermented beer is flat. To carbonate it in the bottle we drop a small sugar tablet into each bottle before filling. The remaining yeast eats the sugar and makes CO₂ that has nowhere to go, and that is how the beer gets its bubbles.",
+          "Before that: cleaning. Every bottle is rinsed, washed and sanitised with a dedicated cleaner, then rests upside down on the bottle tree until ready. Cleaning is boring, but it is the most important thing we do. One dirty bottle can mean sour or flat beer. We fill with a bottling wand that closes when lifted, so there is no spilling and little oxygen gets in. Leave a couple of centimetres of air at the top of the neck."],
+       f:["Sanitised bottles","Sugar tablet per bottle","2–3 cm headspace"]},
+      {p:["Right after filling we put on a cap with a capper. Work fast so the beer is not left open longer than needed. It goes quickest when one person fills and another caps.",
+          "The bottles then rest at room temperature for two weeks while carbonation builds, and then move somewhere cooler. Patience pays off. An IPA is best fresh, but it needs those weeks in the bottle."],
+       f:["2 weeks at room temp.","Then cool"]},
+      {p:["We design the labels ourselves and order them printed with adhesive on the back. Every beer gets its own motif: the white dagger on Sommer Synden, the northern-lights dagger on Aurora Beerialis and a Christmas version with a Santa hat for the Christmas IPA.",
+          "The labels stick straight on when the bottles are dry and ready. It is the last step before the beer leaves the garage."],
+       f:["Sommer Synden","Aurora Beerialis","Christmas IPA"]},
+      {p:["Most of the beer becomes gifts: for Christmas, for birthdays and for friends and neighbours. The Christmas IPA comes in its own gift box.",
+          "And when the crates are empty, it is a good reason to get together and brew again."],
+       f:["Christmas gift box"]}
+    ]
+  };
+  var EN={
+    nav1:"About us",nav2:"The beer",nav3:"The process",nav4:"Recipes",nav5:"Guest brewer",
+    kicker:"Microbrewery · Tromsø",
+    intro:"From recipe to finished bottle, the way we brew in the garage. Scroll to follow along.",
+    cue:"Scroll ↓",sideL:"Timeline",
+    snd:"Sound on","h-gang":"About us","h-hist":"Our story","cap-back":"The back label, as it appears on the bottles.",motto:"“A mini micro garage brewery on Kvaløya combining fantastic flavours with brewing beer, drinking beer and good vibes.”","h-crew":"The crew","h-pics":"Photos",m1t:"2024",m1:"The crew is founded. Five friends, one brewing system and two garages in Eidkjosen.",m2t:"First brew",m2:"Torpedo Judas IPA becomes our first successful brew. After that there was no turning back.",m3t:"The uniform",m3:"Jackets with the dagger on the chest and the crew under the northern lights on the back, with a cat and a dog on watch.",m4t:"Today",m4:"Six beers, our own labels, gifts for friends and neighbours, and guest brewers dropping by the garage.",gc1:"Markus's 40th",gc2:"Approved",gc3:"Cheers",gc4:"The crew together",gc5:"The Christmas labels are ready",gc6:"Bottles waiting for the next brew","e-gang":"Founded 2024",
+    g1:"Five friends from Tromsø decided to make the beer themselves. It is social, it is exciting, and beer tastes better when you made it together.",
+    g2:"The brewery is the garages of two of us in Eidkjosen on Kvaløya. They turn into a brewery whenever our better halves allow it.",
+    g3:"The beer is not for sale. It would be a dream to sell it one day, but for now it means Christmas presents and an expensive hobby.",
+    g4:"The name plays on the TV series Breaking Bad. “Bud” means both Budweiser and buddy. Boron has atomic number 5, the same as the number of us.",
+    cap1:"The uniform. The logo shows the crew under the northern lights, with a cat and a dog on watch.",
+    "crew-cap":"Hover over or tap an element to see who it is.","crew-cap2":"From Markus's 40th and other important occasions",
+    "h-aa":"From A to Z","e-aa":"The comic","aa-lead":"From the garage to happy beer-loving friends. The whole brew as a comic.",
+    d1:"Process",d2:"Recipes",
+    "h-beer":"The beer","e-beer":"Six beers from the garage",
+    b5t:"The first successful brew",b5:"Where Breaking Bud began. The beer that proved the garage could deliver.",
+    b6t:"For our northern lights guests",b6:"Brewed for the guests who come for the aurora. The label has the dagger in northern-lights colours.",
+    b1t:"The flagship",b1:"Juicy IPA with mango, Citra and Mosaic. The one we brew most, and the first to run out.",
+    b2t:"The Christmas beer",b2:"The Hot Mango base with local habaneros soaked in gin. Keeps you warm through the polar night.",
+    b3t:"Internal winner",b3:"A fresh summer ale for long evenings under the midnight sun.",
+    b4t:"Fredrik's beer",b4:"A calm, clean blonde named after Fredrik Zahl. The label borrows the scales from Better Call Saul.",
+    "h-proc":"The process","e-proc":"13 steps · from plan to bottle",
+    "p-intro1":"A week of planning, one long brew day, two weeks in the fermenter and two weeks in the bottle. Every step has a board with keywords and pro tips, so you can follow along and brew at home.",
+    "p-intro2":"The clips are from a real brew day of ours, and the numbers come from Hey Mango IPA. Times on the timeline are approximate. Pro tips from forums and websites link to their source.",
+    "rh-t":"Hygiene","rh":"Everything before the boil is forgiving, because the boil kills most things. Everything after the boil is vulnerable. From chilling until the cap is on, anything that touches the beer must be washed and sanitised. Steps marked <em>Hygiene critical</em> are where an infection can ruin the whole batch.",
+    "h-rec":"Recipes","e-rec":"Brew it yourself",
+    "r-tag":"American IPA · All Grain · 21 litres","r-base":"The base for Hot Mango and Christmas IPA",
+    "r-malt":"Malt","r-oats":"Flaked oats","r-other":"Yeast and more","r-mango":"Mango purée, secondary","r-mash":"Mash","r-boil":"Boil","r-hops":"Hops","r-dry":"(dry hop)","r-dry2":"(dry hop)",
+    "r-note":"Water: 17.6 L strike water (3.1 L/kg) and 17.3 L sparge water. 28 L pre-boil, 21 L into the fermenter.",
+    soon:"Coming",soon2:"Coming",soon3:"Coming",
+    "soon-p":"More recipes are on the way. If you brew one of them, we would love a taste.",
+    "e-guest":"Guest brewer","guest-big":"Join us in the <em>garage</em>",
+    gs1:"The door is open. Friends, colleagues, neighbours and anyone curious are welcome to join as guest brewer for a day.",
+    gs2:"You join the whole brew day, from mash to chill, and see how the beer comes together.",
+    gs3:"Just ask one of us and we will find a day that suits. We are five friends with a hobby, not a secret society.",
+    foot:"Garage brewery in Eidkjosen, Kvaløya. The beer is not for sale."
+  };
+  var lang="no";
+
+  /* ---------- process steps ---------- */
+  var stepsEl=document.getElementById("steps");
+  CH.forEach(function(c,i){
+    var li=document.createElement("li");li.className="step";li.id="steg-"+(i+1);
+    function media(x,cls){
+      if(x[0]==="p") return '<div class="pair" style="grid-template-columns:repeat('+(x.length-1)+',1fr)">'+x.slice(1).map(function(s){return '<div class="vid sq"><img src="'+s+'" alt="" loading="lazy"></div>'}).join("")+'</div>';
+      if(x[0]==="i") return '<div class="'+cls+'"><img src="'+x[1]+'" alt="" loading="lazy">'+(x[2]?'<span class="mc"></span>':'')+'</div>';
+      return '<div class="'+cls+'"><img src="'+x[1]+'.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" poster="'+x[1]+'.jpg" data-src="'+x[1]+'.mp4"></video>'+(x[2]?'<span class="mc"></span>':'')+'</div>';
+    }
+    li.innerHTML='<div class="media">'+media(c.m[0],"vid")+(c.m[1]?media(c.m[1],"vid sub"):"")+'</div>'+
+      '<div class="txt"><span class="no">'+String(i+1).padStart(2,"0")+' / '+CH.length+'<span class="tl"></span></span><h3 class="st"></h3><div class="meta sm"></div><div class="sd"></div><div class="facts2"></div><aside class="tavle"></aside></div>'+
+      '<div class="node" aria-hidden="true"><small>'+(i+1)+'</small>'+TAV[i].sym+'</div>';
+    stepsEl.appendChild(li);
+  });
+  var railFill=document.createElement("div");railFill.className="rail-fill";railFill.setAttribute("aria-hidden","true");stepsEl.appendChild(railFill);
+  function renderSteps(){
+    Array.prototype.forEach.call(stepsEl.querySelectorAll(".step"),function(li,i){
+      li.querySelector(".st").textContent=CH[i][lang][0];
+      li.querySelector(".sm").textContent=CH[i][lang][1];
+      var d=STEPS[lang][i];
+      li.querySelector(".sd").innerHTML=d.p.map(function(t){return "<p>"+t+"</p>"}).join("");
+      li.querySelector(".sd").style.cssText="display:grid;gap:14px";
+      li.querySelector(".facts2").innerHTML=d.f.map(function(t){return "<span>"+t+"</span>"}).join("");
+      var T=TAV[i],en=lang==="en",h="";
+      li.querySelector(".tl").textContent=" · "+T.t[en?1:0];
+      if(T.c) h+='<div class="crit"><b>'+(en?"Hygiene critical":"Renhold kritisk")+'</b><span>'+T.c[lang]+'</span></div>';
+      h+='<div class="th"><span>'+(en?"Board":"Tavla")+' · '+String(i+1).padStart(2,"0")+'</span><span>'+(en?"Keywords and tips":"Stikkord og tips")+'</span></div>';
+      if(T.chem) h+='<div class="chem">'+(en&&T.chemEn?T.chemEn:T.chem)+'</div>';
+      h+='<ul>'+T.kw[lang].map(function(k){return "<li>"+k+"</li>"}).join("")+'</ul>';
+      if(T.g) h+='<div class="tip"><b>'+(en?"Pro tip from the garage":"Pro-tips fra garasjen")+'</b>'+T.g[lang]+'</div>';
+      if(T.f) h+='<div class="tip"><b>'+(en?"Pro tip from the web":"Pro-tips fra nettet")+'</b>'+T.f[lang]+' <a href="'+T.f.u+'" target="_blank" rel="noopener">'+T.f.s+' ↗</a></div>';
+      li.querySelector(".tavle").innerHTML=h;
+      li.querySelectorAll("video").forEach(function(v){v.setAttribute("aria-label",CH[i][lang][0])});
+      var sub=CH[i].m[1],mc=li.querySelector(".sub .mc"); if(sub&&mc) mc.textContent=lang==="en"?sub[3]:sub[2];
+    });
+  }
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if("IntersectionObserver" in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      var v=e.target;
+      if(e.isIntersecting){ if(!v.src){v.src=v.dataset.src;} var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      else v.pause();
+    })},{threshold:.35});
+    stepsEl.querySelectorAll("video").forEach(function(v){io.observe(v)});
+  }
+
+  /* ---------- dock + step jump ---------- */
+  var jumpEl=document.getElementById("jump"),dsteps=document.getElementById("dock-steps"),dproc=document.getElementById("dock-proc");
+  function renderJump(){
+    var j="",d='<a href="#prosessen"><b>→</b>'+(lang==="en"?"Whole process":"Hele prosessen")+'</a><span></span>';
+    CH.forEach(function(c,i){var n=String(i+1).padStart(2,"0"),t=c[lang][0];
+      j+='<a href="#steg-'+(i+1)+'" data-i="'+i+'"><b>'+n+'</b>'+t+'</a>';
+      d+='<a href="#steg-'+(i+1)+'"><b>'+n+'</b>'+t+'</a>';});
+    jumpEl.innerHTML=j;dsteps.innerHTML=d;
+  }
+  function closeSteps(){dsteps.hidden=true;dproc.setAttribute("aria-expanded","false")}
+  dproc.addEventListener("click",function(e){e.stopPropagation();var open=dsteps.hidden;dsteps.hidden=!open;dproc.setAttribute("aria-expanded",String(open))});
+  dsteps.addEventListener("click",function(e){if(e.target.closest("a"))closeSteps()});
+  document.addEventListener("click",function(e){if(!dsteps.hidden&&!dsteps.contains(e.target))closeSteps()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSteps()});
+  function onScroll(){
+    var y=window.innerHeight*0.4,secs=[["prosessen","dock-proc"],["oppskrifter","dock-rec"],["a-til-aa","dock-aa"]];
+    secs.forEach(function(s){var r=document.getElementById(s[0]).getBoundingClientRect();document.getElementById(s[1]).classList.toggle("on",r.top<y&&r.bottom>y)});
+    var cur=-1;Array.prototype.forEach.call(stepsEl.querySelectorAll(".step"),function(li,i){var lit=li.getBoundingClientRect().top<y;if(lit)cur=i;li.classList.toggle("lit",lit)});
+    var sr=stepsEl.getBoundingClientRect();railFill.style.height=Math.max(0,Math.min(sr.height,y-sr.top))+"px";
+    Array.prototype.forEach.call(jumpEl.children,function(a,i){var on=i===cur;if(on!==a.classList.contains("on")){a.classList.toggle("on",on);if(on)jumpEl.scrollTo({left:a.offsetLeft-jumpEl.clientWidth/2+a.offsetWidth/2,behavior:"smooth"})}});
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+
+  document.querySelectorAll(".pt").forEach(function(t){t.addEventListener("click",function(){var o=t.classList.contains("open");document.querySelectorAll(".pt.open").forEach(function(x){x.classList.remove("open")});if(!o)t.classList.add("open")})});
+
+  /* ---------- i18n ---------- */
+  var orig={};
+  document.querySelectorAll("[data-i18n]").forEach(function(el){orig[el.dataset.i18n+"|"+Array.prototype.indexOf.call(document.querySelectorAll('[data-i18n="'+el.dataset.i18n+'"]'),el)]=el.innerHTML;});
+  function setLang(l){
+    lang=l;document.documentElement.lang=l==="en"?"en":"no";
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var key=el.dataset.i18n,idx=Array.prototype.indexOf.call(document.querySelectorAll('[data-i18n="'+key+'"]'),el);
+      var html=l==="en"&&EN[key]!=null?EN[key]:orig[key+"|"+idx];
+      el.innerHTML=html; if(el.hasAttribute("data-t")) el.setAttribute("data-t",el.textContent);
+    });
+    document.getElementById("lang-no").setAttribute("aria-pressed",l==="no");
+    document.getElementById("lang-en").setAttribute("aria-pressed",l==="en");
+    renderSteps(); renderJump(); sndLabel();
+    try{localStorage.setItem("bb-lang",l)}catch(e){}
+  }
+  document.getElementById("lang-no").onclick=function(){setLang("no")};
+  document.getElementById("lang-en").onclick=function(){setLang("en")};
+
+  /* ---------- intro film (Higgsfield) ---------- */
+  var film=document.getElementById("film"),introv=document.getElementById("introv"),snd=document.getElementById("snd");
+  var gL=document.getElementById("gL"),gR=document.getElementById("gR"),cue=document.getElementById("cue"),lastCh=0,giant=gL.parentNode;
+  function curCh(){return 0}
+  function drawChapter(){}
+  function progress(){var r=film.getBoundingClientRect(),span=film.offsetHeight-window.innerHeight;return span>0?Math.min(1,Math.max(0,-r.top/span)):0}
+  function sndLabel(){var on=!introv.muted;snd.setAttribute("aria-pressed",String(on));snd.firstChild.textContent=lang==="en"?(on?"Sound off":"Sound on"):(on?"Lyd av":"Lyd på")}
+  snd.addEventListener("click",function(){introv.muted=!introv.muted;if(!introv.muted){var pl=introv.play();if(pl&&pl.catch)pl.catch(function(){})}sndLabel()});
+  function tick(){
+    var p=progress(),s=1+p*0.25;
+    gL.style.transform="translateX("+(-p*22)+"vw) scale("+s+")";
+    gR.style.transform="translateX("+(p*22)+"vw) scale("+s+")";
+    introv.style.transform="scale("+(1+p*0.12)+")";
+    cue.style.opacity=Math.max(0,1-p*3);
+    /* tittelen fader ut når gutta løfter flaskene (~6.6 s) og kommer tilbake når filmen starter på nytt */
+    var t=introv.currentTime,o=t<0.6?t/0.6:t<6.4?1:Math.max(0,1-(t-6.4)/0.7);
+    giant.style.opacity=reduce?1:o;
+    requestAnimationFrame(tick);
+  }
+  if(reduce){introv.removeAttribute("autoplay");introv.pause()}else requestAnimationFrame(tick);
+  new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!reduce){var pl=introv.play();if(pl&&pl.catch)pl.catch(function(){})}}else introv.pause()})},{threshold:0.05}).observe(introv);
+  window.__ready=true;
+
+  var saved=null;try{saved=localStorage.getItem("bb-lang")}catch(e){}
+  setLang(saved==="en"?"en":"no");
+})();
+</script>
+</body></html>
