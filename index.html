@@ -155,6 +155,32 @@ section.block{padding-block:clamp(80px,12vw,160px)}
 .gallery .w2 img{aspect-ratio:8/5}
 .gallery figcaption{font-family:var(--f-mono);font-size:12px;color:var(--steel);margin-top:8px}
 @media (max-width:760px){.hist-grid{grid-template-columns:1fr}.backlabel{width:min(100%,280px);justify-self:center}.milestones{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.gallery .w2{grid-column:span 2}}
+.gb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(30px,6vw,80px);align-items:start}
+.gb-form{display:grid;gap:16px;background:var(--coal);border:1px solid var(--line);border-radius:6px;padding:clamp(20px,3vw,32px);position:sticky;top:90px}
+.gb-lead{margin:0;color:#cfc9bd;font-size:17px}
+.gb-form label>span,.gb-stars legend{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);margin-bottom:6px}
+.gb-form input,.gb-form select,.gb-form textarea{width:100%;box-sizing:border-box;background:var(--ink);color:var(--bone);border:1px solid var(--line);border-radius:4px;padding:12px;font:inherit;font-size:16px}
+.gb-form textarea{resize:vertical}
+.gb-stars{border:0;margin:0;padding:0}
+.gb-row{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px}
+.gb-stars input{position:absolute;opacity:0;width:1px;height:1px}
+.gb-stars label{font-size:30px;line-height:1;color:var(--line);cursor:pointer;transition:color .15s}
+.gb-stars input:checked~label,.gb-stars label:hover,.gb-stars label:hover~label{color:#f6c90e}
+.gb-stars input:focus-visible+label{outline:2px solid var(--aurora);outline-offset:2px}
+.gb-hp{position:absolute;left:-9999px}
+.gb-send{background:var(--bone);color:var(--ink);border:0;border-radius:999px;padding:14px 22px;font-family:var(--f-mono);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;justify-self:start}
+.gb-send:disabled{opacity:.5;cursor:default}
+.gb-status{margin:0;font-family:var(--f-mono);font-size:12px;color:var(--aurora);min-height:1em}
+.gb-list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.gb-list li{border-bottom:1px solid var(--line);padding:0 0 18px}
+.gb-list .gb-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.gb-list .gb-who{font-weight:600;color:var(--bone);font-size:17px}
+.gb-list .gb-when{font-family:var(--f-mono);font-size:11px;color:var(--steel)}
+.gb-list .gb-beer{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin:6px 0}
+.gb-list .gb-beer i{font-style:normal;color:#f6c90e;letter-spacing:2px;margin-left:8px}
+.gb-list p{margin:0;color:#cfc9bd;white-space:pre-line}
+.gb-empty{color:var(--steel);font-family:var(--f-mono);font-size:13px}
+@media (max-width:860px){.gb{grid-template-columns:1fr}.gb-form{position:static}}
 .crew-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:12px;font-family:var(--f-mono);font-size:12px;color:var(--steel)}
 
 /* Ølet: numbered reels */
@@ -317,6 +343,7 @@ footer small{font-family:var(--f-mono);font-size:12px;color:var(--steel);display
     <a href="#prosessen"><span class="roll"><span data-i18n="nav3" data-t="Prosessen">Prosessen</span></span></a>
     <a href="#oppskrifter"><span class="roll"><span data-i18n="nav4" data-t="Oppskrifter">Oppskrifter</span></span></a>
     <a href="#gjest"><span class="roll"><span data-i18n="nav5" data-t="Gjestebrygger">Gjestebrygger</span></span></a>
+    <a href="#gjestebok"><span class="roll"><span data-i18n="nav6" data-t="Gjestebok">Gjestebok</span></span></a>
   </nav>
   <div class="lang" role="group" aria-label="Språk / Language">
     <button id="lang-no" type="button" aria-pressed="true">NO</button>
@@ -532,6 +559,32 @@ footer small{font-family:var(--f-mono);font-size:12px;color:var(--steel);display
     </div>
   </div>
 </section>
+
+<!-- ================= GJESTEBOK ================= -->
+<section class="block" id="gjestebok">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="h-gb">Gjestebok</h2><span class="eyebrow" data-i18n="e-gb">Åpen for alle</span></div>
+    <div class="gb">
+      <form class="gb-form" id="gbForm" autocomplete="off">
+        <p class="gb-lead" data-i18n="gb-lead">Har du smakt ølet vårt? Skriv hva du drakk og hva du syntes. Ros og ris er like velkomne.</p>
+        <label><span data-i18n="gb-name">Navn</span><input name="navn" maxlength="60" required></label>
+        <label><span data-i18n="gb-beer">Hvilket øl?</span><select name="ol" required>
+          <option value="" data-i18n="gb-pick">Velg øl</option>
+          <option>Hot Mango IPA</option><option>Christmas IPA</option><option>Sommer Synden Ale</option><option>Better Call Zahl</option><option>Torpedo Judas IPA</option><option>Aurora Beerialis</option>
+          <option value="Annet" data-i18n="gb-other">Annet / husker ikke</option></select></label>
+        <fieldset class="gb-stars"><legend data-i18n="gb-rate">Karakter</legend>
+          <div class="gb-row"><input type="radio" name="karakter" id="s5" value="5"><label for="s5" title="5">★</label><input type="radio" name="karakter" id="s4" value="4"><label for="s4" title="4">★</label><input type="radio" name="karakter" id="s3" value="3"><label for="s3" title="3">★</label><input type="radio" name="karakter" id="s2" value="2"><label for="s2" title="2">★</label><input type="radio" name="karakter" id="s1" value="1"><label for="s1" title="1">★</label></div>
+        </fieldset>
+        <label><span data-i18n="gb-msg">Hva syntes du?</span><textarea name="tekst" rows="4" maxlength="800" required></textarea></label>
+        <label class="gb-hp" aria-hidden="true">Nettside<input name="nettside" tabindex="-1"></label>
+        <button type="submit" class="gb-send" data-i18n="gb-send">Skriv i gjesteboka</button>
+        <p class="gb-status" id="gbStatus" role="status"></p>
+      </form>
+      <ol class="gb-list" id="gbList" aria-live="polite"></ol>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <nav class="dock" aria-label="Snarveier">
@@ -697,7 +750,7 @@ footer small{font-family:var(--f-mono);font-size:12px;color:var(--steel);display
     ]
   };
   var EN={
-    nav1:"About us",nav2:"The beer",nav3:"The process",nav4:"Recipes",nav5:"Guest brewer",
+    nav1:"About us",nav2:"The beer",nav3:"The process",nav4:"Recipes",nav5:"Guest brewer",nav6:"Guestbook","h-gb":"Guestbook","e-gb":"Open to everyone","gb-lead":"Tasted our beer? Tell us what you drank and what you thought. Praise and criticism are equally welcome.","gb-name":"Name","gb-beer":"Which beer?","gb-pick":"Pick a beer","gb-other":"Other / can\u2019t remember","gb-rate":"Rating","gb-msg":"What did you think?","gb-send":"Sign the guestbook",
     kicker:"Microbrewery · Tromsø",
     intro:"From recipe to finished bottle, the way we brew in the garage. Scroll to follow along.",
     cue:"Scroll ↓",sideL:"Timeline",
@@ -818,7 +871,7 @@ footer small{font-family:var(--f-mono);font-size:12px;color:var(--steel);display
     });
     document.getElementById("lang-no").setAttribute("aria-pressed",l==="no");
     document.getElementById("lang-en").setAttribute("aria-pressed",l==="en");
-    renderSteps(); renderJump(); sndLabel();
+    renderSteps(); renderJump(); sndLabel(); gbRender();
     try{localStorage.setItem("bb-lang",l)}catch(e){}
   }
   document.getElementById("lang-no").onclick=function(){setLang("no")};
@@ -845,6 +898,46 @@ footer small{font-family:var(--f-mono);font-size:12px;color:var(--steel);display
   }
   if(reduce){introv.removeAttribute("autoplay");introv.pause()}else requestAnimationFrame(tick);
   new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!reduce){var pl=introv.play();if(pl&&pl.catch)pl.catch(function(){})}}else introv.pause()})},{threshold:0.05}).observe(introv);
+  /* ---------- gjestebok (Supabase, tabell "gjestebok") ---------- */
+  var GB={url:"https://hpgjsmmhqueteladlkzr.supabase.co",key:"sb_publishable_nztebE0KFbEEM9UJ7gFR7A_c-BxfXYp"};
+  var gbForm=document.getElementById("gbForm"),gbList=document.getElementById("gbList"),gbStatus=document.getElementById("gbStatus"),gbRows=null;
+  function gbT(no,en){return lang==="en"?en:no}
+  function gbHead(){return {apikey:GB.key,"Content-Type":"application/json"}}
+  function gbRender(){
+    if(!gbList) return; gbList.textContent="";
+    if(!GB.url){var e=document.createElement("li");e.className="gb-empty";e.textContent=gbT("Gjesteboka åpner snart. Da kan du skrive her.","The guestbook opens soon. Then you can write here.");gbList.appendChild(e);return}
+    if(gbRows===null){var l=document.createElement("li");l.className="gb-empty";l.textContent=gbT("Henter innlegg …","Loading entries …");gbList.appendChild(l);return}
+    if(!gbRows.length){var z=document.createElement("li");z.className="gb-empty";z.textContent=gbT("Ingen innlegg ennå. Bli den første!","No entries yet. Be the first!");gbList.appendChild(z);return}
+    gbRows.forEach(function(r){
+      var li=document.createElement("li"),hd=document.createElement("div"),who=document.createElement("span"),when=document.createElement("span"),beer=document.createElement("div"),p=document.createElement("p");
+      hd.className="gb-h";who.className="gb-who";when.className="gb-when";beer.className="gb-beer";
+      who.textContent=r.navn;when.textContent=new Date(r.created_at).toLocaleDateString(lang==="en"?"en-GB":"nb-NO",{day:"numeric",month:"long",year:"numeric"});
+      beer.textContent=r.ol==="Annet"?gbT("Annet øl","Other beer"):r.ol;
+      var k=parseInt(r.karakter,10);if(k>=1&&k<=5){var st=document.createElement("i");st.textContent="★".repeat(k);st.setAttribute("aria-label",k+"/5");beer.appendChild(st)}
+      p.textContent=r.tekst;hd.appendChild(who);hd.appendChild(when);li.appendChild(hd);li.appendChild(beer);li.appendChild(p);gbList.appendChild(li);
+    });
+  }
+  function gbLoad(){
+    if(!GB.url) return gbRender();
+    fetch(GB.url+"/rest/v1/gjestebok?select=navn,ol,karakter,tekst,created_at&order=created_at.desc&limit=200",{headers:gbHead()})
+      .then(function(r){if(!r.ok)throw r;return r.json()}).then(function(d){gbRows=d;gbRender()})
+      .catch(function(){gbRows=[];gbRender();gbStatus.textContent=gbT("Fikk ikke hentet gjesteboka akkurat nå.","Could not load the guestbook right now.")});
+  }
+  if(gbForm){
+    if(!GB.url) gbForm.querySelector(".gb-send").disabled=true;
+    gbForm.addEventListener("submit",function(ev){
+      ev.preventDefault(); var f=new FormData(gbForm);
+      if(f.get("nettside")) return;
+      var row={navn:String(f.get("navn")).trim().slice(0,60),ol:f.get("ol"),karakter:f.get("karakter")?parseInt(f.get("karakter"),10):null,tekst:String(f.get("tekst")).trim().slice(0,800)};
+      if(!row.navn||!row.ol||!row.tekst) return;
+      var btn=gbForm.querySelector(".gb-send");btn.disabled=true;gbStatus.textContent=gbT("Sender …","Sending …");
+      fetch(GB.url+"/rest/v1/gjestebok",{method:"POST",headers:Object.assign(gbHead(),{Prefer:"return=minimal"}),body:JSON.stringify(row)})
+        .then(function(r){if(!r.ok)throw r;gbForm.reset();gbStatus.textContent=gbT("Takk! Innlegget ditt ligger i gjesteboka.","Thanks! Your entry is in the guestbook.");gbLoad()})
+        .catch(function(){gbStatus.textContent=gbT("Noe gikk galt. Prøv igjen om litt.","Something went wrong. Try again in a moment.")})
+        .then(function(){btn.disabled=false});
+    });
+  }
+  gbLoad();
   window.__ready=true;
 
   var saved=null;try{saved=localStorage.getItem("bb-lang")}catch(e){}
