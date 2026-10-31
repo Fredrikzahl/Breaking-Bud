@@ -221,6 +221,8 @@ section.block{padding-block:clamp(80px,12vw,160px)}
 .step:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,300px)}
 .step:nth-child(even) .media{order:2}
 .step .media{display:grid;gap:10px;min-width:0}
+.step .subs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.step .subs .vid.sub{width:100%;justify-self:stretch}
 .step .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .step .vid.sq{aspect-ratio:1}
 .step .vid.sub{width:62%;aspect-ratio:3/4;justify-self:end}
@@ -385,7 +387,8 @@ footer .row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) min
   .step{gap:18px}
   .step .media{width:100%;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:end}
   .step .vid.sub{width:100%;aspect-ratio:4/5;justify-self:stretch}
-  .step .media>.pair{grid-column:1/-1}
+  .step .media>.pair,.step .media>.subs{grid-column:1/-1}
+  .step .media>.vid:has(+ .subs){grid-column:1/-1;aspect-ratio:4/3}
   .step .media>.vid:has(+ .pair){grid-column:1/-1;aspect-ratio:4/3}
   .step .media>.vid:only-child{grid-column:1/-1;aspect-ratio:4/3}
   .step h3{font-size:clamp(40px,12vw,64px)}
@@ -714,7 +717,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
     {k:"kjoling",a:132,b:152,m:[["v","clips/kjoling"]],no:["Kjøling","Ned til 19 °C med kjølespiral"],en:["Chill","Down to 19 °C with a chiller"]},
     {k:"overforing",a:153,b:182,m:[["v","clips/overforing"]],no:["Overføring og gjær","21 L inn i karet, gjæren på"],en:["Transfer and yeast","21 L into the fermenter, yeast in"]},
     {k:"gjaering",a:183,b:183,m:[["s","clips/gjaering"],["s","clips/tilsetning","Tilsetning","Additions"]],no:["Under gjæring","Vegard forklarer hva som skjer i karet"],en:["During fermentation","Vegard explains what happens in the fermenter"]},
-    {k:"maling",a:183,b:202,m:[["i","img/1030.webp"],["v","clips/maling-etter","Måling etter gjæring","Reading after fermentation"]],no:["Måling","OG 1.058 på refraktometeret"],en:["Measure","OG 1.058 on the refractometer"]},
+    {k:"maling",a:183,b:202,m:[["i","img/1030.webp"],["i","img/maling-under.webp","Under gjæring","During fermentation"],["v","clips/maling-etter","Etter gjæring","After fermentation"]],no:["Måling","OG 1.058 på refraktometeret"],en:["Measure","OG 1.058 on the refractometer"]},
     {k:"tapping",a:203,b:223,m:[["v","clips/tapping"],["i","img/vask.webp","Flaskene desinfiseres på flasketreet","Bottles sanitised on the bottle tree"]],no:["Tapping","På flaske med litt sukker"],en:["Bottling","Into bottles with a little sugar"]},
     {k:"kapsling",a:224,b:244,m:[["v","clips/korking"],["i","img/1033.webp","Flaskene står klare til kapsling","Bottles ready for capping"]],no:["Kapsling","Kapsel på, en etter en"],en:["Capping","Caps on, one by one"]},
     {k:"etikett",a:245,b:268,m:[["i","img/1037.webp"],["p","img/ss.webp","img/aurora.webp","img/1035.webp"]],no:["Etikett","Egne etiketter fra garasjen"],en:["Label","Our own labels from the garage"]},
@@ -792,7 +795,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
       {p:["I klippet forklarer Vegard hva som skjer i karet mens gjæren jobber. De første dagene spiser gjæren sukkeret og lager alkohol og CO₂, og gjærlåsen bobler jevnt. Vi holder 19 °C og lar karet stå mest mulig i fred.",
           "Smakene kommer mot slutten. I det lille klippet åpner vi karet midt i gjæringen, der skummet fra gjæren ligger på toppen, og tilsetter. Habaneroene har ligget i gin i en humlepose, og går i karet sammen med 800 g mangopuré. De siste tre dagene får ølet 75 g tørrhumle med Citra og Mosaic, som gir den friske, tropiske duften. Alt som går oppi skal være desinfisert."],
        f:["19 °C i 14 dager","800 g mango","75 g tørrhumle"]},
-      {p:["Før gjæringen tar vi en dråpe vørter på refraktometeret. Det viser hvor mye sukker som er løst i væsken, målt som egenvekt. Hey Mango skal starte på 1.058.",
+      {p:["Før gjæringen tar vi en dråpe vørter på refraktometeret. Det viser hvor mye sukker som er løst i væsken, målt som egenvekt. Hey Mango skal starte på 1.058. Underveis i gjæringen sjekker vi også med et hydrometer, som på bildet til Vegard.",
           "Etter gjæringen måler vi igjen, som i det lille klippet. Alkohol forstyrrer refraktometeret, så tallet korrigeres i en kalkulator. Når to målinger med et par dagers mellomrom viser det samme, rundt 1.010, er gjæren ferdig. Forskjellen mellom start og slutt gir alkoholprosenten: (1.058 − 1.010) × 131,25 ≈ 6,3 %."],
        f:["OG 1.058","FG 1.010","6,3 % ABV"]},
       {p:["Ferdig gjæret øl er flatt. For å få kullsyre på flasken legger vi en liten sukkertablett i hver flaske før vi fyller dem. Gjærrestene i ølet spiser sukkeret og lager CO₂ som ikke har noe sted å gå, og slik bobler ølet.",
@@ -837,7 +840,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
       {p:["In the clip, Vegard explains what happens in the fermenter while the yeast works. For the first few days the yeast eats the sugar and makes alcohol and CO₂, and the airlock bubbles steadily. We hold 19 °C and leave the fermenter alone as much as we can.",
           "The flavours come near the end. In the small clip we open the fermenter mid-fermentation, with the yeast foam on top, and add them. The habaneros have soaked in gin in a hop bag, and go into the fermenter together with 800 g of mango purée. For the last three days the beer gets 75 g of Citra and Mosaic dry hops, which give it the fresh, tropical aroma. Everything that goes in must be sanitised."],
        f:["19 °C for 14 days","800 g mango","75 g dry hops"]},
-      {p:["Before fermentation we put a drop of wort on the refractometer. It shows how much sugar is dissolved, measured as specific gravity. Hey Mango should start at 1.058.",
+      {p:["Before fermentation we put a drop of wort on the refractometer. It shows how much sugar is dissolved, measured as specific gravity. Hey Mango should start at 1.058. During fermentation we also check with a hydrometer, as in Vegard's photo.",
           "After fermentation we measure again, as in the small clip. Alcohol skews the refractometer, so the reading is corrected with a calculator. When two readings a couple of days apart show the same, around 1.010, the yeast is done. The difference between start and finish gives the alcohol content: (1.058 − 1.010) × 131.25 ≈ 6.3 %."],
        f:["OG 1.058","FG 1.010","6.3 % ABV"]},
       {p:["Fermented beer is flat. To carbonate it in the bottle we drop a small sugar tablet into each bottle before filling. The remaining yeast eats the sugar and makes CO₂ that has nowhere to go, and that is how the beer gets its bubbles.",
@@ -903,7 +906,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
       if(x[0]==="s") return '<div class="'+cls+'"><img src="'+x[1]+'.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" poster="'+x[1]+'.jpg" data-src="'+x[1]+'.mp4"></video><button type="button" class="vsnd" aria-pressed="false">Lyd på</button>'+(x[2]?'<span class="mc"></span>':'')+'</div>';
       return '<div class="'+cls+'"><img src="'+x[1]+'.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" poster="'+x[1]+'.jpg" data-src="'+x[1]+'.mp4"></video>'+(x[2]?'<span class="mc"></span>':'')+'</div>';
     }
-    li.innerHTML='<div class="media">'+media(c.m[0],"vid")+(c.m[1]?media(c.m[1],"vid sub"):"")+'</div>'+
+    li.innerHTML='<div class="media">'+media(c.m[0],"vid")+(c.m.length>2?'<div class="subs">'+c.m.slice(1).map(function(x){return media(x,"vid sub")}).join("")+'</div>':c.m[1]?media(c.m[1],"vid sub"):"")+'</div>'+
       '<div class="txt"><span class="no">'+String(i+1).padStart(2,"0")+' / '+CH.length+'<span class="tl"></span></span><h3 class="st"></h3><div class="meta sm"></div><div class="sd"></div><div class="facts2"></div><aside class="tavle"></aside></div>'+
       '<div class="node" aria-hidden="true"><small>'+(i+1)+'</small>'+TAV[i].sym+'</div>';
     stepsEl.appendChild(li);
@@ -928,7 +931,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
       li.querySelector(".tavle").innerHTML=h;
       li.querySelectorAll("video").forEach(function(v){v.setAttribute("aria-label",CH[i][lang][0])});
       li.querySelectorAll(".vsnd").forEach(function(vb){var on=vb.getAttribute("aria-pressed")==="true";vb.textContent=lang==="en"?(on?"Sound off":"Sound on"):(on?"Lyd av":"Lyd på")});
-      var sub=CH[i].m[1],mc=li.querySelector(".sub .mc"); if(sub&&mc) mc.textContent=lang==="en"?sub[3]:sub[2];
+      li.querySelectorAll(".sub").forEach(function(el,k){var sub=CH[i].m[k+1],mc=el.querySelector(".mc"); if(sub&&mc) mc.textContent=lang==="en"?sub[3]:sub[2]});
     });
   }
   stepsEl.querySelectorAll(".vsnd").forEach(function(b){
