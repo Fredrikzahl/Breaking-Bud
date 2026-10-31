@@ -227,6 +227,8 @@ section.block{padding-block:clamp(80px,12vw,160px)}
 .step .vsnd{position:absolute;right:10px;bottom:10px;z-index:3;font:600 12px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--bone);background:rgba(12,14,13,.7);border:1px solid var(--line);border-radius:999px;padding:12px 16px;min-height:40px;cursor:pointer;backdrop-filter:blur(6px);transition:background-color .3s cubic-bezier(.22,1,.36,1),color .3s cubic-bezier(.22,1,.36,1),transform .2s cubic-bezier(.22,1,.36,1)}
 .step .vsnd:hover,.step .vsnd[aria-pressed="true"]{background:var(--bone);color:var(--ink)}
 .step .vsnd:active{transform:scale(.97)}
+.step .vid.sub .vsnd{right:8px;bottom:8px;padding:10px 12px}
+.step .vid .vsnd~.mc{top:8px;bottom:auto}
 .step .mc{position:absolute;left:8px;bottom:8px;font-family:var(--f-mono);font-size:11px;background:rgba(12,14,13,.8);padding:4px 7px;border-radius:2px}
 .step .vid{position:relative;aspect-ratio:9/16;border-radius:3px;overflow:hidden;background:var(--coal);max-width:100%}
 .step video,.step .vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -711,7 +713,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
     {k:"humle",a:114,b:131,m:[["v","clips/humle"]],no:["Humle","Columbus, Cascade, Amarillo, Citra"],en:["Hops","Columbus, Cascade, Amarillo, Citra"]},
     {k:"kjoling",a:132,b:152,m:[["v","clips/kjoling"]],no:["Kjøling","Ned til 19 °C med kjølespiral"],en:["Chill","Down to 19 °C with a chiller"]},
     {k:"overforing",a:153,b:182,m:[["v","clips/overforing"]],no:["Overføring og gjær","21 L inn i karet, gjæren på"],en:["Transfer and yeast","21 L into the fermenter, yeast in"]},
-    {k:"gjaering",a:183,b:183,m:[["s","clips/gjaering"]],no:["Under gjæring","Vegard forklarer hva som skjer i karet"],en:["During fermentation","Vegard explains what happens in the fermenter"]},
+    {k:"gjaering",a:183,b:183,m:[["s","clips/gjaering"],["s","clips/tilsetning","Tilsetning","Additions"]],no:["Under gjæring","Vegard forklarer hva som skjer i karet"],en:["During fermentation","Vegard explains what happens in the fermenter"]},
     {k:"maling",a:183,b:202,m:[["i","img/1030.webp"],["v","clips/maling-etter","Måling etter gjæring","Reading after fermentation"]],no:["Måling","OG 1.058 på refraktometeret"],en:["Measure","OG 1.058 on the refractometer"]},
     {k:"tapping",a:203,b:223,m:[["v","clips/tapping"],["i","img/vask.webp","Flaskene desinfiseres på flasketreet","Bottles sanitised on the bottle tree"]],no:["Tapping","På flaske med litt sukker"],en:["Bottling","Into bottles with a little sugar"]},
     {k:"kapsling",a:224,b:244,m:[["v","clips/korking"],["i","img/1033.webp","Flaskene står klare til kapsling","Bottles ready for capping"]],no:["Kapsling","Kapsel på, en etter en"],en:["Capping","Caps on, one by one"]},
@@ -788,7 +790,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
           "Så strør vi gjæren, Safale US-05, over og rører den inn, som i klippet, setter på lokket med gjærlås og lar karet stå i fred i rundt to uker ved 19 °C. Mot slutten tilsettes 800 g mangopuré, som får stå i sju dager, og de siste tre dagene får ølet 75 g tørrhumle med Citra og Mosaic."],
        f:["21 L inn","Safale US-05","~14 dager"]},
       {p:["I klippet forklarer Vegard hva som skjer i karet mens gjæren jobber. De første dagene spiser gjæren sukkeret og lager alkohol og CO₂, og gjærlåsen bobler jevnt. Vi holder 19 °C og lar karet stå mest mulig i fred.",
-          "Smakene kommer mot slutten. Habaneroene har ligget i gin i en humlepose, og går i karet sammen med 800 g mangopuré. De siste tre dagene får ølet 75 g tørrhumle med Citra og Mosaic, som gir den friske, tropiske duften. Alt som går oppi skal være desinfisert."],
+          "Smakene kommer mot slutten. I det lille klippet åpner vi karet midt i gjæringen, der skummet fra gjæren ligger på toppen, og tilsetter. Habaneroene har ligget i gin i en humlepose, og går i karet sammen med 800 g mangopuré. De siste tre dagene får ølet 75 g tørrhumle med Citra og Mosaic, som gir den friske, tropiske duften. Alt som går oppi skal være desinfisert."],
        f:["19 °C i 14 dager","800 g mango","75 g tørrhumle"]},
       {p:["Før gjæringen tar vi en dråpe vørter på refraktometeret. Det viser hvor mye sukker som er løst i væsken, målt som egenvekt. Hey Mango skal starte på 1.058.",
           "Etter gjæringen måler vi igjen, som i det lille klippet. Alkohol forstyrrer refraktometeret, så tallet korrigeres i en kalkulator. Når to målinger med et par dagers mellomrom viser det samme, rundt 1.010, er gjæren ferdig. Forskjellen mellom start og slutt gir alkoholprosenten: (1.058 − 1.010) × 131,25 ≈ 6,3 %."],
@@ -833,7 +835,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
           "Then we sprinkle the yeast, Safale US-05, on top and stir it in, as in the clip, fit the lid with an airlock and leave the fermenter alone for about two weeks at 19 °C. Towards the end we add 800 g of mango purée for seven days, and for the last three days the beer gets 75 g of Citra and Mosaic dry hops."],
        f:["21 L in","Safale US-05","~14 days"]},
       {p:["In the clip, Vegard explains what happens in the fermenter while the yeast works. For the first few days the yeast eats the sugar and makes alcohol and CO₂, and the airlock bubbles steadily. We hold 19 °C and leave the fermenter alone as much as we can.",
-          "The flavours come near the end. The habaneros have soaked in gin in a hop bag, and go into the fermenter together with 800 g of mango purée. For the last three days the beer gets 75 g of Citra and Mosaic dry hops, which give it the fresh, tropical aroma. Everything that goes in must be sanitised."],
+          "The flavours come near the end. In the small clip we open the fermenter mid-fermentation, with the yeast foam on top, and add them. The habaneros have soaked in gin in a hop bag, and go into the fermenter together with 800 g of mango purée. For the last three days the beer gets 75 g of Citra and Mosaic dry hops, which give it the fresh, tropical aroma. Everything that goes in must be sanitised."],
        f:["19 °C for 14 days","800 g mango","75 g dry hops"]},
       {p:["Before fermentation we put a drop of wort on the refractometer. It shows how much sugar is dissolved, measured as specific gravity. Hey Mango should start at 1.058.",
           "After fermentation we measure again, as in the small clip. Alcohol skews the refractometer, so the reading is corrected with a calculator. When two readings a couple of days apart show the same, around 1.010, the yeast is done. The difference between start and finish gives the alcohol content: (1.058 − 1.010) × 131.25 ≈ 6.3 %."],
@@ -898,7 +900,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
     function media(x,cls){
       if(x[0]==="p") return '<div class="pair" style="grid-template-columns:repeat('+(x.length-1)+',1fr)">'+x.slice(1).map(function(s){return '<div class="vid sq"><img src="'+s+'" alt="" loading="lazy"></div>'}).join("")+'</div>';
       if(x[0]==="i") return '<div class="'+cls+'"><img src="'+x[1]+'" alt="'+(x[2]||c.no[0]+": "+c.no[1])+'" loading="lazy">'+(x[2]?'<span class="mc"></span>':'')+'</div>';
-      if(x[0]==="s") return '<div class="'+cls+'"><img src="'+x[1]+'.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" poster="'+x[1]+'.jpg" data-src="'+x[1]+'.mp4"></video><button type="button" class="vsnd" aria-pressed="false">Lyd på</button></div>';
+      if(x[0]==="s") return '<div class="'+cls+'"><img src="'+x[1]+'.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" poster="'+x[1]+'.jpg" data-src="'+x[1]+'.mp4"></video><button type="button" class="vsnd" aria-pressed="false">Lyd på</button>'+(x[2]?'<span class="mc"></span>':'')+'</div>';
       return '<div class="'+cls+'"><img src="'+x[1]+'.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none" poster="'+x[1]+'.jpg" data-src="'+x[1]+'.mp4"></video>'+(x[2]?'<span class="mc"></span>':'')+'</div>';
     }
     li.innerHTML='<div class="media">'+media(c.m[0],"vid")+(c.m[1]?media(c.m[1],"vid sub"):"")+'</div>'+
@@ -925,7 +927,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
       if(T.f) h+='<div class="tip"><b>'+(en?"Pro tip from the web":"Pro-tips fra nettet")+'</b>'+T.f[lang]+' <a href="'+T.f.u+'" target="_blank" rel="noopener">'+T.f.s+' ↗</a></div>';
       li.querySelector(".tavle").innerHTML=h;
       li.querySelectorAll("video").forEach(function(v){v.setAttribute("aria-label",CH[i][lang][0])});
-      var vb=li.querySelector(".vsnd"); if(vb){var on=vb.getAttribute("aria-pressed")==="true";vb.textContent=lang==="en"?(on?"Sound off":"Sound on"):(on?"Lyd av":"Lyd på")}
+      li.querySelectorAll(".vsnd").forEach(function(vb){var on=vb.getAttribute("aria-pressed")==="true";vb.textContent=lang==="en"?(on?"Sound off":"Sound on"):(on?"Lyd av":"Lyd på")});
       var sub=CH[i].m[1],mc=li.querySelector(".sub .mc"); if(sub&&mc) mc.textContent=lang==="en"?sub[3]:sub[2];
     });
   }
@@ -934,6 +936,7 @@ nav.links a.on .roll{box-shadow:0 2px 0 var(--red)}
       var v=b.parentNode.querySelector("video"),on=v.muted;
       if(!v.src)v.src=v.dataset.src;
       if(on&&!b.dataset.started){v.currentTime=0;b.dataset.started="1"}
+      if(on) stepsEl.querySelectorAll(".vsnd[aria-pressed=true]").forEach(function(o){if(o!==b){o.parentNode.querySelector("video").muted=true;o.setAttribute("aria-pressed","false");o.textContent=lang==="en"?"Sound on":"Lyd på"}});
       v.muted=!on; if(on){var p=v.play();if(p&&p.catch)p.catch(function(){})}
       b.setAttribute("aria-pressed",String(on));
       b.textContent=lang==="en"?(on?"Sound off":"Sound on"):(on?"Lyd av":"Lyd på");
